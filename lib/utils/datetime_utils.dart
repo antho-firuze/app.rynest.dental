@@ -27,8 +27,7 @@ extension DateTimeExtension on DateTime {
   /// ```
   /// -> 7 Oktober 1996
   /// ```
-  String yMMMMd([String locale = 'id']) =>
-      DateFormat.yMMMMd(locale).format(this);
+  String yMMMMd([String locale = 'id']) => DateFormat.yMMMMd(locale).format(this);
 
   // a hour is force using locale 'en' because it using ':' separator
   // beside it for 'id' it using '.'
@@ -110,8 +109,7 @@ extension DateTimeExtension on DateTime {
   /// 'HH:mm a'                -> 05:08 PM
   /// 'HH:mm:ss a'             -> 05:08:01 PM
   /// ```
-  String custom(String pattern, [String locale = 'id']) =>
-      DateFormat(pattern, locale).format(this);
+  String custom(String pattern, [String locale = 'id']) => DateFormat(pattern, locale).format(this);
 
   /// Format dMYHm
   ///
@@ -137,6 +135,40 @@ extension DateTimeExtension on DateTime {
     int offset = DateTime.now().timeZoneOffset.inHours;
     return add(Duration(hours: offset));
   }
+
+  /// The [weekday] may be 0 for Sunday, 1 for Monday, etc. up to 7 for Sunday.
+  DateTime mostRecentWeekday(DateTime date, int weekday) =>
+      DateTime(date.year, date.month, date.day - (date.weekday - weekday) % 7);
+
+  String weekdayName([int? weekday, String locale = 'id']) {
+    dynamic dayDataEn = {
+      "1": "Monday",
+      "2": "Tuesday",
+      "3": "Wednesday",
+      "4": "Thrusday",
+      "5": "Friday",
+      "6": "Saturday",
+      "7": "Sunday"
+    };
+    dynamic dayDataId = {
+      "1": "Senin",
+      "2": "Selasa",
+      "3": "Rabu",
+      "4": "Kamis",
+      "5": "Jum'at",
+      "6": "Sabtu",
+      "7": "Minggu"
+    };
+    if (weekday != null) {
+      if (locale == 'id') {
+        return dayDataId[weekday.toString()];
+      }
+      return dayDataEn[weekday.toString()];
+    }
+    return DateFormat.EEEE(locale).format(this);
+  }
+
+  String timeFormat({int? hour, String format = 'hh:mm a'}) => copyWith(hour: hour, minute: 0).custom(format);
 }
 
 extension TimeOfDayExtension on TimeOfDay {
@@ -163,8 +195,7 @@ extension TimeOfDayExtension on TimeOfDay {
   }
 
   String formatAMPM() {
-    String time =
-        '${hourOfPeriod.toString().padLeft(2, '0')}:${minute.toString().padLeft(2, '0')}';
+    String time = '${hourOfPeriod.toString().padLeft(2, '0')}:${minute.toString().padLeft(2, '0')}';
     return period == DayPeriod.am ? '$time AM' : '$time PM';
   }
 

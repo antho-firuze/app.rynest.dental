@@ -1,0 +1,152 @@
+[
+  {
+    "id": 1,
+    "name": "Drg. Icha Kimberly",
+    "photo": "https://avatar.iran.liara.run/public/job/doctor/female",
+    "rating": 5.0,
+    "count_patient": 1001,
+    "count_experience": 10.0,
+    "count_review": 1233,
+    "short_profile": "Seorang dokter gigi spesialis periodonsia dengan pengalaman 10 tahun di bidang perawatan gusi dan implan gigi. Beliau dikenal dengan pendekatan yang ramah dan teliti, serta fokus pada kesehatan periodontal pasien.",
+    "schedules": [
+      {
+        "weekday": 1,
+        "time": [1, 4],
+        "quota": 10,
+        "booked": 7
+      },
+      {
+        "weekday": 2,
+        "time": [1, 4],
+        "quota": 10,
+        "booked": 4
+      },
+      {
+        "weekday": 4,
+        "time": [0, 1, 4],
+        "quota": 10,
+        "booked": 10
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Drg. Dharma Abu",
+    "photo": "https://avatar.iran.liara.run/public/38",
+    "rating": 5.0,
+    "count_patient": 2001,
+    "count_experience": 8.0,
+    "count_review": 1233,
+    "short_profile": "Seorang dokter gigi spesialis konservasi gigi yang ahli dalam perawatan saluran akar dan estetika gigi. Dengan pengalaman 8 tahun, beliau memberikan pelayanan terbaik untuk senyum sehat dan indah.",
+    "schedules": [
+      {
+        "weekday": 1,
+        "time": [1, 4],
+        "quota": 10,
+        "booked": 7
+      },
+      {
+        "weekday": 2,
+        "time": [1, 4],
+        "quota": 10,
+        "booked": 4
+      },
+      {
+        "weekday": 4,
+        "time": [0, 1, 4],
+        "quota": 10,
+        "booked": 10
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Drg. Firza Gulam",
+    "photo": "https://avatar.iran.liara.run/public/job/doctor/male",
+    "rating": 5.0,
+    "count_patient": 701,
+    "count_experience": 6.0,
+    "count_review": 1233,
+    "short_profile": "Seorang dokter gigi umum dengan spesialisasi dalam perawatan anak (pedodonti). Beliau memiliki kemampuan komunikasi yang baik dengan anak-anak, membuat mereka nyaman selama perawatan gigi.",
+    "schedules": [
+      {
+        "weekday": 1,
+        "time": [1, 4],
+        "quota": 10,
+        "booked": 7
+      },
+      {
+        "weekday": 2,
+        "time": [1, 4],
+        "quota": 10,
+        "booked": 4
+      },
+      {
+        "weekday": 4,
+        "time": [0, 1, 4],
+        "quota": 10,
+        "booked": 10
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Drg. Romero Uno",
+    "photo": "https://avatar.iran.liara.run/public/9",
+    "rating": 5.0,
+    "count_patient": 555,
+    "count_experience": 4.0,
+    "count_review": 1233,
+    "short_profile": "Seorang dokter gigi spesialis ortodonti yang berpengalaman dalam merapikan gigi menggunakan behel dan aligner. Beliau telah menangani ratusan kasus maloklusi dengan hasil yang memuaskan.",
+    "schedules": [
+      {
+        "weekday": 1,
+        "time": [1, 4],
+        "quota": 10,
+        "booked": 7
+      },
+      {
+        "weekday": 2,
+        "time": [1, 4],
+        "quota": 10,
+        "booked": 4
+      },
+      {
+        "weekday": 4,
+        "time": [0, 1, 4],
+        "quota": 10,
+        "booked": 10
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Drg. Dalsim Bold",
+    "photo": "https://avatar.iran.liara.run/public/40",
+    "rating": 5.0,
+    "count_patient": 676,
+    "count_experience": 12.0,
+    "count_review": 420,
+    "short_profile": "Seorang dokter gigi spesialis prostodonti yang ahli dalam pembuatan gigi palsu, crown, dan bridge. Dengan pengalaman 12 tahun, beliau membantu pasien mendapatkan fungsi dan estetika gigi yang optimal.",
+    "schedules": [
+      {
+        "weekday": 1,
+        "time": [1, 4],
+        "quota": 10,
+        "booked": 7
+      },
+      {
+        "weekday": 2,
+        "time": [1, 4],
+        "quota": 10,
+        "booked": 4
+      },
+      {
+        "weekday": 4,
+        "time": [0, 1, 4],
+        "quota": 10,
+        "booked": 10
+      }
+    ]
+  }
+]

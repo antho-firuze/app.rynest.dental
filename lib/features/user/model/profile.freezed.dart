@@ -31,15 +31,20 @@ mixin _$Profile {
   String get email => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
   @JsonKey(name: 'is_phone_verified')
-  @IntToBoolConverter()
+  @JsonBoolConverter()
   bool get isPhoneVerified => throw _privateConstructorUsedError;
   @JsonKey(name: 'is_email_verified')
-  @IntToBoolConverter()
+  @JsonBoolConverter()
   bool get isEmailVerified => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
   String get photo => throw _privateConstructorUsedError;
   @JsonKey(name: 'passport_no')
   String? get passportNo => throw _privateConstructorUsedError;
+  String? get gender => throw _privateConstructorUsedError;
+  String? get placeOfBirth => throw _privateConstructorUsedError;
+  DateTime? get dateOfBirth => throw _privateConstructorUsedError;
+  double? get weightKg => throw _privateConstructorUsedError;
+  double? get heightCm => throw _privateConstructorUsedError;
 
   /// Serializes this Profile to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -64,14 +69,19 @@ abstract class $ProfileCopyWith<$Res> {
       String email,
       String phone,
       @JsonKey(name: 'is_phone_verified')
-      @IntToBoolConverter()
+      @JsonBoolConverter()
       bool isPhoneVerified,
       @JsonKey(name: 'is_email_verified')
-      @IntToBoolConverter()
+      @JsonBoolConverter()
       bool isEmailVerified,
       String address,
       String photo,
-      @JsonKey(name: 'passport_no') String? passportNo});
+      @JsonKey(name: 'passport_no') String? passportNo,
+      String? gender,
+      String? placeOfBirth,
+      DateTime? dateOfBirth,
+      double? weightKg,
+      double? heightCm});
 }
 
 /// @nodoc
@@ -101,6 +111,11 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
     Object? address = null,
     Object? photo = null,
     Object? passportNo = freezed,
+    Object? gender = freezed,
+    Object? placeOfBirth = freezed,
+    Object? dateOfBirth = freezed,
+    Object? weightKg = freezed,
+    Object? heightCm = freezed,
   }) {
     return _then(_value.copyWith(
       userId: freezed == userId
@@ -151,6 +166,26 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
           ? _value.passportNo
           : passportNo // ignore: cast_nullable_to_non_nullable
               as String?,
+      gender: freezed == gender
+          ? _value.gender
+          : gender // ignore: cast_nullable_to_non_nullable
+              as String?,
+      placeOfBirth: freezed == placeOfBirth
+          ? _value.placeOfBirth
+          : placeOfBirth // ignore: cast_nullable_to_non_nullable
+              as String?,
+      dateOfBirth: freezed == dateOfBirth
+          ? _value.dateOfBirth
+          : dateOfBirth // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      weightKg: freezed == weightKg
+          ? _value.weightKg
+          : weightKg // ignore: cast_nullable_to_non_nullable
+              as double?,
+      heightCm: freezed == heightCm
+          ? _value.heightCm
+          : heightCm // ignore: cast_nullable_to_non_nullable
+              as double?,
     ) as $Val);
   }
 }
@@ -171,14 +206,19 @@ abstract class _$$ProfileImplCopyWith<$Res> implements $ProfileCopyWith<$Res> {
       String email,
       String phone,
       @JsonKey(name: 'is_phone_verified')
-      @IntToBoolConverter()
+      @JsonBoolConverter()
       bool isPhoneVerified,
       @JsonKey(name: 'is_email_verified')
-      @IntToBoolConverter()
+      @JsonBoolConverter()
       bool isEmailVerified,
       String address,
       String photo,
-      @JsonKey(name: 'passport_no') String? passportNo});
+      @JsonKey(name: 'passport_no') String? passportNo,
+      String? gender,
+      String? placeOfBirth,
+      DateTime? dateOfBirth,
+      double? weightKg,
+      double? heightCm});
 }
 
 /// @nodoc
@@ -206,6 +246,11 @@ class __$$ProfileImplCopyWithImpl<$Res>
     Object? address = null,
     Object? photo = null,
     Object? passportNo = freezed,
+    Object? gender = freezed,
+    Object? placeOfBirth = freezed,
+    Object? dateOfBirth = freezed,
+    Object? weightKg = freezed,
+    Object? heightCm = freezed,
   }) {
     return _then(_$ProfileImpl(
       userId: freezed == userId
@@ -256,6 +301,26 @@ class __$$ProfileImplCopyWithImpl<$Res>
           ? _value.passportNo
           : passportNo // ignore: cast_nullable_to_non_nullable
               as String?,
+      gender: freezed == gender
+          ? _value.gender
+          : gender // ignore: cast_nullable_to_non_nullable
+              as String?,
+      placeOfBirth: freezed == placeOfBirth
+          ? _value.placeOfBirth
+          : placeOfBirth // ignore: cast_nullable_to_non_nullable
+              as String?,
+      dateOfBirth: freezed == dateOfBirth
+          ? _value.dateOfBirth
+          : dateOfBirth // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      weightKg: freezed == weightKg
+          ? _value.weightKg
+          : weightKg // ignore: cast_nullable_to_non_nullable
+              as double?,
+      heightCm: freezed == heightCm
+          ? _value.heightCm
+          : heightCm // ignore: cast_nullable_to_non_nullable
+              as double?,
     ));
   }
 }
@@ -272,14 +337,19 @@ class _$ProfileImpl implements _Profile {
       this.email = '',
       this.phone = '',
       @JsonKey(name: 'is_phone_verified')
-      @IntToBoolConverter()
+      @JsonBoolConverter()
       this.isPhoneVerified = false,
       @JsonKey(name: 'is_email_verified')
-      @IntToBoolConverter()
+      @JsonBoolConverter()
       this.isEmailVerified = false,
       this.address = '',
       this.photo = '',
-      @JsonKey(name: 'passport_no') this.passportNo});
+      @JsonKey(name: 'passport_no') this.passportNo,
+      this.gender,
+      this.placeOfBirth,
+      this.dateOfBirth,
+      this.weightKg,
+      this.heightCm});
 
   factory _$ProfileImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProfileImplFromJson(json);
@@ -307,11 +377,11 @@ class _$ProfileImpl implements _Profile {
   final String phone;
   @override
   @JsonKey(name: 'is_phone_verified')
-  @IntToBoolConverter()
+  @JsonBoolConverter()
   final bool isPhoneVerified;
   @override
   @JsonKey(name: 'is_email_verified')
-  @IntToBoolConverter()
+  @JsonBoolConverter()
   final bool isEmailVerified;
   @override
   @JsonKey()
@@ -322,10 +392,20 @@ class _$ProfileImpl implements _Profile {
   @override
   @JsonKey(name: 'passport_no')
   final String? passportNo;
+  @override
+  final String? gender;
+  @override
+  final String? placeOfBirth;
+  @override
+  final DateTime? dateOfBirth;
+  @override
+  final double? weightKg;
+  @override
+  final double? heightCm;
 
   @override
   String toString() {
-    return 'Profile(userId: $userId, memberId: $memberId, identifier: $identifier, name: $name, fullName: $fullName, email: $email, phone: $phone, isPhoneVerified: $isPhoneVerified, isEmailVerified: $isEmailVerified, address: $address, photo: $photo, passportNo: $passportNo)';
+    return 'Profile(userId: $userId, memberId: $memberId, identifier: $identifier, name: $name, fullName: $fullName, email: $email, phone: $phone, isPhoneVerified: $isPhoneVerified, isEmailVerified: $isEmailVerified, address: $address, photo: $photo, passportNo: $passportNo, gender: $gender, placeOfBirth: $placeOfBirth, dateOfBirth: $dateOfBirth, weightKg: $weightKg, heightCm: $heightCm)';
   }
 
   @override
@@ -350,7 +430,16 @@ class _$ProfileImpl implements _Profile {
             (identical(other.address, address) || other.address == address) &&
             (identical(other.photo, photo) || other.photo == photo) &&
             (identical(other.passportNo, passportNo) ||
-                other.passportNo == passportNo));
+                other.passportNo == passportNo) &&
+            (identical(other.gender, gender) || other.gender == gender) &&
+            (identical(other.placeOfBirth, placeOfBirth) ||
+                other.placeOfBirth == placeOfBirth) &&
+            (identical(other.dateOfBirth, dateOfBirth) ||
+                other.dateOfBirth == dateOfBirth) &&
+            (identical(other.weightKg, weightKg) ||
+                other.weightKg == weightKg) &&
+            (identical(other.heightCm, heightCm) ||
+                other.heightCm == heightCm));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -368,7 +457,12 @@ class _$ProfileImpl implements _Profile {
       isEmailVerified,
       address,
       photo,
-      passportNo);
+      passportNo,
+      gender,
+      placeOfBirth,
+      dateOfBirth,
+      weightKg,
+      heightCm);
 
   /// Create a copy of Profile
   /// with the given fields replaced by the non-null parameter values.
@@ -396,14 +490,19 @@ abstract class _Profile implements Profile {
       final String email,
       final String phone,
       @JsonKey(name: 'is_phone_verified')
-      @IntToBoolConverter()
+      @JsonBoolConverter()
       final bool isPhoneVerified,
       @JsonKey(name: 'is_email_verified')
-      @IntToBoolConverter()
+      @JsonBoolConverter()
       final bool isEmailVerified,
       final String address,
       final String photo,
-      @JsonKey(name: 'passport_no') final String? passportNo}) = _$ProfileImpl;
+      @JsonKey(name: 'passport_no') final String? passportNo,
+      final String? gender,
+      final String? placeOfBirth,
+      final DateTime? dateOfBirth,
+      final double? weightKg,
+      final double? heightCm}) = _$ProfileImpl;
 
   factory _Profile.fromJson(Map<String, dynamic> json) = _$ProfileImpl.fromJson;
 
@@ -426,11 +525,11 @@ abstract class _Profile implements Profile {
   String get phone;
   @override
   @JsonKey(name: 'is_phone_verified')
-  @IntToBoolConverter()
+  @JsonBoolConverter()
   bool get isPhoneVerified;
   @override
   @JsonKey(name: 'is_email_verified')
-  @IntToBoolConverter()
+  @JsonBoolConverter()
   bool get isEmailVerified;
   @override
   String get address;
@@ -439,6 +538,16 @@ abstract class _Profile implements Profile {
   @override
   @JsonKey(name: 'passport_no')
   String? get passportNo;
+  @override
+  String? get gender;
+  @override
+  String? get placeOfBirth;
+  @override
+  DateTime? get dateOfBirth;
+  @override
+  double? get weightKg;
+  @override
+  double? get heightCm;
 
   /// Create a copy of Profile
   /// with the given fields replaced by the non-null parameter values.

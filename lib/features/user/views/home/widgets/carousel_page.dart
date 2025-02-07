@@ -18,9 +18,12 @@ class CarouselPage extends ConsumerWidget {
     return ref.watch(fetchCarouselProvider).when(
           skipLoadingOnRefresh: false,
           loading: () => const Center(child: CircularProgressIndicator()),
-          error: (error, stackTrace) => LoadingFailed(onTap: () => ref.refresh(fetchCarouselProvider)),
+          error: (error, stackTrace) {
+            debugPrint(error.toString());
+            return LoadingFailed(onTap: () => ref.refresh(fetchCarouselProvider));
+          },
           data: (data) {
-            if (data.isEmpty) return ImageFailed(onTap: () => ref.refresh(fetchCarouselProvider));
+            if (data == null || data.isEmpty) return ImageFailed(onTap: () => ref.refresh(fetchCarouselProvider));
 
             return SizedBox(
               height: 250,

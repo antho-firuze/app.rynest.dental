@@ -1,0 +1,17 @@
+[
+    {
+        "title": "Ruang dan Lingkungan Klinik",
+        "image": "assets/images/im-scope.png",
+        "content": "<b>Ruang Tunggu Nyaman :</b> Dilengkapi dengan kursi empuk, pendingin ruangan, TV, majalah, atau hiburan lain.<br><b>Kebersihan dan Kerapihan :</b> Area klinik yang bersih dan steril untuk mencegah infeksi.<br><b>Toilet dan Fasilitas Sanitasi :</b> Fasilitas yang bersih untuk kenyamanan pasien."
+    },
+    {
+        "title": "Peralatan Medis Modern",
+        "image": "assets/images/im-tools.png",
+        "content": "<b>Unit Dental Chair Canggih :</b> Dengan fungsi pengaturan posisi yang nyaman untuk pasien dan dokter.<br><b>Alat Sterilisasi (Autoclave) :</b> Untuk memastikan semua alat bebas dari kuman dan bakteri.<br><b>Digital X-Ray :</b> Untuk pemeriksaan gigi yang lebih akurat dan aman.<br><b>Intraoral Camera :</b> Memungkinkan pasien melihat kondisi giginya secara langsung.<br><b>Scanner 3D :</b> Untuk mendukung pembuatan aligner atau crown dengan presisi tinggi."
+    },
+    {
+        "title": "Ruang dan Lingkungan Klinik",
+        "image": "assets/images/im-experts.png",
+        "content": "Dokter gigi dengan lisensi dan sertifikasi yang lengkap.<br>Asisten dan staf klinik yang ramah serta terlatih dalam melayani pasien."
+    }
+]

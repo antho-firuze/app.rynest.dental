@@ -1,0 +1,23 @@
+[
+    {
+        "treatment": "Scalling",
+        "date": "2025-01-12",
+        "doctor": "Drg. Icha Kimberly",
+        "location": [47, 48],
+        "diagnosis": "Perubahan warna pada permukaan gigi akibat konsumsi makanan, minuman, atau kebiasaan seperti merokok."
+    },
+    {
+        "treatment": "Scalling",
+        "date": "2024-12-12",
+        "doctor": "Drg. Icha Kimberly",
+        "location": [47, 48],
+        "diagnosis": "Infeksi serius pada gusi yang merusak jaringan lunak dan tulang penyangga gigi."
+    },
+    {
+        "treatment": "Scalling",
+        "date": "2024-11-12",
+        "doctor": "Drg. Icha Kimberly",
+        "location": [47, 48],
+        "diagnosis": "Peradangan pada gusi yang disebabkan oleh akumulasi plak dan karang gigi."
+    }
+]

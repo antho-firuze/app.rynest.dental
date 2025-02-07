@@ -17,13 +17,12 @@ class AboutView extends StatelessWidget {
       child: Scaffold(
         body: OneUINestedScrollView(
           foregroundColor: oWhite,
-          expandedWidget: Text('Penasaran dengan AMOORA?'.hardcoded).tsHeadlineL().center().clr(oWhite),
-          collapsedWidget: Text('Penasaran dengan AMOORA?'.hardcoded).tsTitleL().ellipsis().clr(oWhite).maxLn(1),
+          collapsedWidget: Text('Penasaran dengan Rynest?'.hardcoded).tsTitleL().ellipsis().clr(oWhite).maxLn(1),
           background: Container(
             decoration: const BoxDecoration(
               color: Colors.brown,
               borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10)),
-              image: DecorationImage(image: AssetImage('assets/images/background_2.png'), fit: BoxFit.cover),
+              image: DecorationImage(image: AssetImage('assets/images/im-about_team.png'), fit: BoxFit.cover),
             ),
           ),
           actions: [
@@ -41,40 +40,24 @@ class AboutView extends StatelessWidget {
               20.height,
               Padding(
                 padding: const EdgeInsets.only(left: 16),
-                child: Text('Profil Amoora Travel'.hardcoded).tsHeadlineL().bold(),
+                child: Text('Profil Rynest Technology'.hardcoded).tsHeadlineL().bold(),
               ),
               const Padding(
                 padding: EdgeInsets.only(left: 16),
-                child: Text('Perjalanan Ibadah Dengan Kenyamanan Terbaik'),
+                child: Text('Solusi Masalah Teknologi Anda'),
               ),
               30.height,
               Padding(
                 padding: const EdgeInsets.only(left: 16, right: 16),
-                child: const Text("PT Zhafeela Rabbani Wisata berdiri tahun 2014 sebagai salah satu perusahaan "
-                        "yang bergerak dibidang jasa penyelenggara ibadah umroh & haji dengan nama Amoora Travel. "
-                        "PT Zhafeela Rabbani Wisata (Amoora) telah memiliki izin resmi sebagai Penyelenggara "
-                        "Perjalanan Ibadah Umroh (PPIU).")
+                child: const Text(
+                        "PT. Rynest Technology Indomedia merupakan perusahaan yang bergerak di bidang Teknologi Informasi dengan karakteristik jasa layanan yang inovatif, kreatif, dan modern. RTI di dirikan sejak tahun 2009 sekaligus bernanung dalam unit usaha The Rynest Companies Group (RCG).")
                     .justify(),
               ),
               20.height,
               Padding(
                 padding: const EdgeInsets.only(left: 16, right: 16),
-                child: const Text("Amoora mempunyai team yang telah berpengalaman melayani jamaah umroh dan haji. "
-                        "Latar belakang terbentuknya Amoora Travel itu sendiri untuk mempermudah Jamaah yang ingin "
-                        "melaksanakan ibadah Umroh & Haji.")
-                    .justify(),
-              ),
-              20.height,
-              Padding(
-                padding: const EdgeInsets.only(left: 16, right: 16),
-                child: const Text("Dengan kehadiran Amoora sebagai penyelegara travel yang amanah dan terpercaya, "
-                        "kami ingin agar Jamaah semua dapat beribadah dengan tenang dan khusyuk.")
-                    .justify(),
-              ),
-              20.height,
-              Padding(
-                padding: const EdgeInsets.only(left: 16, right: 16),
-                child: const Text("Amoora juga bekerja sama dengan Perbankan Syariah serta Lembaga Pembiayaan Syariah.")
+                child: const Text(
+                        "Dengan dukungan sumber daya manusia yang kompeten dan profesional serta berpengalaman sehingga kualitas produk dan layanan yang diberikan RTI selalu dapat memenuhi kebutuhan para pelanggannya khususnya untuk layanan teknologi informasi dibidang asuransi, dana pensiun, dan keuangan.")
                     .justify(),
               ),
 
@@ -86,15 +69,15 @@ class AboutView extends StatelessWidget {
               ),
               const Padding(
                 padding: EdgeInsets.only(left: 16),
-                child: Text('Impian dan Cita-cita yang dimiliki Amoora'),
+                child: Text('Impian dan Cita-cita yang dimiliki Rynest'),
               ),
               30.height,
               Center(child: SizedBox(height: 70, child: Image.asset('assets/icons/ic-vision.png'))),
               10.height,
               Padding(
                 padding: const EdgeInsets.only(left: 16, right: 16),
-                child: const Text('"Visi kami adalah menjadikan perusahaan jasa travel terkemuka di Indonesia '
-                        'yang menggunakan sistem yang berbasis teknologi."')
+                child: const Text(
+                        'Menjadi perusahaan IT Konsultan dan jasa yang terkemuka baik di insdustri asuransi dan non asuransi, dana pensiun, layanan kesehatan, financial dan training di masa depan.')
                     .justify(),
               ),
               30.height,
@@ -102,9 +85,8 @@ class AboutView extends StatelessWidget {
               10.height,
               Padding(
                 padding: const EdgeInsets.only(left: 16, right: 16),
-                child: const Text('"Misi kami yaitu Berkomitmen tinggi untuk memberikan pelayanan yang prima, '
-                        'meningkatkan kompetensi dan sumber daya manusia yang profesional, '
-                        'memahami kebutuhan jamaah dan mengutamakan kepuasan jamaah."')
+                child: const Text(
+                        'Memberikan fasilitas pelayanan yang prima secara efektif dan efisien dalam teknologi informasi saat ini, sesuai dengan kebutuhan klien.')
                     .justify(),
               ),
               30.height,

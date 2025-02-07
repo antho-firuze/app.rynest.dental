@@ -1,0 +1,19 @@
+{
+  "user_id": 1,
+  "member_id": 1,
+  "identifier": "admin",
+  "name": "Alexis Anderson",
+  "full_name": "Alexis Anderson",
+  "email": "",
+  "phone": "",
+  "is_phone_verified": false,
+  "is_email_verified": false,
+  "address": "",
+  "photo": "https://avatar.iran.liara.run/public/17",
+  "passportNo": "",
+  "gender": "Male",
+  "placeOfBirth": "Jakarta",
+  "dateOfBirth": "1998-04-01",
+  "weightKg": 70,
+  "heightCm": 170
+}

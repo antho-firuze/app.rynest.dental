@@ -9,6 +9,7 @@ import 'package:dental/features/auth/controller/auth_ctrl.dart';
 import 'package:dental/features/user/model/profile.dart';
 import 'package:dental/utils/router.dart';
 import 'package:dental/common/services/sharedpref_service.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final profileProvider = StateProvider<Profile?>((ref) => null);
@@ -22,26 +23,36 @@ class ProfileCtrl {
   Future<void> initialize() async {
     log('Initialize Profile !');
 
-    if (ref.read(authUserProvider) != null) {
-      loadProfile();
-    }
+    await fetchProfile();
 
-    ref.listen(authUserProvider, (previous, next) async {
-      await fetchProfile();
-    });
+    // if (ref.read(authUserProvider) != null) {
+    //   loadProfile();
+    // }
+
+    // ref.listen(authUserProvider, (previous, next) async {
+    //   await fetchProfile();
+    // });
   }
 
   Future<void> fetchProfile() async {
-    if (ref.read(authUserProvider) == null) {
-      log("fetchProfile => authUserProvider = null", name: 'PROFILE-CTRL');
-      saveProfile(null);
-      return;
-    }
+    // if (ref.read(authUserProvider) == null) {
+    //   log("fetchProfile => authUserProvider = null", name: 'PROFILE-CTRL');
+    //   saveProfile(null);
+    //   return;
+    // }
 
-    final reqs = Reqs(path: '/api/v1/user/profile');
-    final state = await AsyncValue.guard(() async => await ref.read(apiServiceProvider).call(reqs: reqs));
+    final String response = await rootBundle.loadString('assets/json/profile.json');
+    final data = await json.decode(response);
 
-    final profile = Profile.fromJson(state.value);
+    log('$data', name: 'PROFILE-CTRL');
+    final profile = Profile.fromJson(data);
+
+    // final reqs = Reqs(url: 'https://dummyjson.com/c/2c46-e2d8-4f0a-bc6f');
+    // final state = await AsyncValue.guard(() async => await ref.read(apiServiceProvider).get(reqs: reqs));
+    // final reqs = Reqs(path: '/api/v1/user/profile');
+    // final state = await AsyncValue.guard(() async => await ref.read(apiServiceProvider).call(reqs: reqs));
+
+    // final profile = Profile.fromJson(state.value);
 
     saveProfile(profile);
   }

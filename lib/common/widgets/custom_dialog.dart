@@ -23,6 +23,7 @@ class CustomDialog extends StatelessWidget {
         shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
         actionsPadding: const EdgeInsets.only(right: 15, bottom: 10),
         title: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             if (leading != null) ...[
               leading!,

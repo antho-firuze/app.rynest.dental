@@ -16,11 +16,16 @@ class Profile with _$Profile {
     @JsonKey(name: 'full_name') @Default('') String fullName,
     @Default('') String email,
     @Default('') String phone,
-    @JsonKey(name: 'is_phone_verified') @IntToBoolConverter() @Default(false) bool isPhoneVerified,
-    @JsonKey(name: 'is_email_verified') @IntToBoolConverter() @Default(false) bool isEmailVerified,
+    @JsonKey(name: 'is_phone_verified') @JsonBoolConverter() @Default(false) bool isPhoneVerified,
+    @JsonKey(name: 'is_email_verified') @JsonBoolConverter() @Default(false) bool isEmailVerified,
     @Default('') String address,
     @Default('') String photo,
     @JsonKey(name: 'passport_no') String? passportNo,
+    String? gender,
+    String? placeOfBirth,
+    DateTime? dateOfBirth,
+    double? weightKg,
+    double? heightCm,
   }) = _Profile;
 
   factory Profile.fromJson(Map<String, dynamic> json) => _$ProfileFromJson(json);

@@ -17,15 +17,20 @@ _$ProfileImpl _$$ProfileImplFromJson(Map<String, dynamic> json) =>
       phone: json['phone'] as String? ?? '',
       isPhoneVerified: json['is_phone_verified'] == null
           ? false
-          : const IntToBoolConverter()
-              .fromJson((json['is_phone_verified'] as num).toInt()),
+          : const JsonBoolConverter().fromJson(json['is_phone_verified']),
       isEmailVerified: json['is_email_verified'] == null
           ? false
-          : const IntToBoolConverter()
-              .fromJson((json['is_email_verified'] as num).toInt()),
+          : const JsonBoolConverter().fromJson(json['is_email_verified']),
       address: json['address'] as String? ?? '',
       photo: json['photo'] as String? ?? '',
       passportNo: json['passport_no'] as String?,
+      gender: json['gender'] as String?,
+      placeOfBirth: json['placeOfBirth'] as String?,
+      dateOfBirth: json['dateOfBirth'] == null
+          ? null
+          : DateTime.parse(json['dateOfBirth'] as String),
+      weightKg: (json['weightKg'] as num?)?.toDouble(),
+      heightCm: (json['heightCm'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$$ProfileImplToJson(_$ProfileImpl instance) =>
@@ -38,10 +43,15 @@ Map<String, dynamic> _$$ProfileImplToJson(_$ProfileImpl instance) =>
       'email': instance.email,
       'phone': instance.phone,
       'is_phone_verified':
-          const IntToBoolConverter().toJson(instance.isPhoneVerified),
+          const JsonBoolConverter().toJson(instance.isPhoneVerified),
       'is_email_verified':
-          const IntToBoolConverter().toJson(instance.isEmailVerified),
+          const JsonBoolConverter().toJson(instance.isEmailVerified),
       'address': instance.address,
       'photo': instance.photo,
       'passport_no': instance.passportNo,
+      'gender': instance.gender,
+      'placeOfBirth': instance.placeOfBirth,
+      'dateOfBirth': instance.dateOfBirth?.toIso8601String(),
+      'weightKg': instance.weightKg,
+      'heightCm': instance.heightCm,
     };

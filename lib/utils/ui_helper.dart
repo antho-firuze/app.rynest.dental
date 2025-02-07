@@ -147,7 +147,7 @@ extension AnotherTextStyleHelpers on Text {
   Text get thin => _text(newStyle: (style ?? ts).copyWith(fontWeight: FontWeight.w100));
   Text get extraLight => _text(newStyle: (style ?? ts).copyWith(fontWeight: FontWeight.w200));
   Text get light => _text(newStyle: (style ?? ts).copyWith(fontWeight: FontWeight.w300));
-  Text height(double? height) => _text(newStyle: (style ?? ts).copyWith(height: height));
+  Text height(double? height) => _text(newStyle: (style ?? ts).copyWith(height: height, ));
   Text space(double? ltrSpacing) => _text(newStyle: (style ?? ts).copyWith(letterSpacing: ltrSpacing));
   Text letterSpace(double value) => _text(newStyle: (style ?? ts).copyWith(letterSpacing: value));
   Text bold([FontWeight? fontWeight]) =>
@@ -167,7 +167,7 @@ extension AnotherTextStyleHelpers on Text {
       onTap: onTap,
       child: _text(
         newStyle: (style ?? ts).copyWith(
-          color: color ?? oBlack.whenDark(oGold),
+          color: color ?? primaryDark.whenDark(oGold),
           fontWeight: isBold ? FontWeight.bold : null,
           fontStyle: isItalic ? FontStyle.italic : null,
         ),

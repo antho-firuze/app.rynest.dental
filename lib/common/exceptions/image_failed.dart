@@ -1,4 +1,4 @@
-import 'package:dental/common/widgets/cross_paint.dart';
+import 'package:dental/common/widgets/painter/cross_paint.dart';
 import 'package:dental/core/app_color.dart';
 import 'package:dental/utils/ui_helper.dart';
 import 'package:flutter/material.dart';

@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "message": "Halo, saya merasa sakit di bagian gigi belakang sejak kemarin. Apakah ada layanan yang cocok untuk saya ?",
+        "time": "2025-02-01 11:00:00",
+        "its_me": true
+    },
+    {
+        "id": 2,
+        "message": "Halo, Kami memahami situasi Anda. Klinik kami menerima pasien darurat. Anda bisa langsung datang ke klinik hari ini atau membuat janji sebelumnya. Mohon informasikan jam kedatangan Anda, agar kami dapat mempersiapkan dengan baik. Terima kasih.",
+        "time": "2025-02-01 11:01:00",
+        "its_me": false
+    },
+    {
+        "id": 3,
+        "message": "Nanti sore pukul 16:00 apa kah bisa ?",
+        "time": "2025-02-01 11:05:00",
+        "its_me": true
+    },
+    {
+        "id": 4,
+        "message": "Baik kami akan jadwalkan  kedatangan anda pada pukul 16:00 hari ini",
+        "time": "2025-02-01 11:06:00",
+        "its_me": false
+    },
+    {
+        "id": 5,
+        "message": "Baik terimakasih banyak",
+        "time": "2025-02-01 11:10:00",
+        "its_me": true
+    },
+    {
+        "id": 6,
+        "message": "Kami ingin mengkonfiramsi kedatangan anda pada pukul 16:00 hari ini, apakah anda hadir  ?",
+        "time": "2025-02-01 15:30:00",
+        "its_me": false
+    },
+    {
+        "id": 7,
+        "message": "Ya, saya telah sampai di klinik",
+        "time": "2025-02-01 16:00:00",
+        "its_me": true
+    },
+    {
+        "id": 8,
+        "message": "Baik terimakasih atas konfirmasinya",
+        "time": "2025-02-01 16:01:00",
+        "its_me": false
+    }
+]

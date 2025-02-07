@@ -23,7 +23,7 @@ const Color oGrey70 = Color(0xFF747374);
 const Color oGreen = Colors.green;
 
 const Color oBlue = Colors.blue;
-const Color oBlue70 = Color(0xFFEFF4FF);
+const Color oBlue70 = Color(0xFFDFE9FF);
 
 const Color oOvercast = Color(0xFFF1F1F2);
 
@@ -53,14 +53,16 @@ extension ColorContext on BuildContext {
 }
 
 extension CustomColorScheme on ColorScheme {
-  Color get scaffold =>
-      brightness == Brightness.light ? const Color.fromARGB(255, 234, 234, 234) : const Color(0xFF0C0C0C);
+  Color get scaffold => brightness == Brightness.light ? oWhite : const Color(0xFF0C0C0C);
 
   // Color get scaffoldBg => brightness == Brightness.light
   //     ? const Color.fromARGB(255, 255, 255, 255)
   //     : const Color(0xFF1B1B1B);
 
-  Color get appBar => brightness == Brightness.light ? primaryLight : primaryDark;
+  Color get appBar => brightness == Brightness.light ? oWhite : primaryDark;
+  Color get appBarIcon => brightness == Brightness.light ? primaryDark : oWhite;
+  Color get appBarForeground => brightness == Brightness.light ? primaryDark : oWhite;
+  Color get appBarText => brightness == Brightness.light ? primaryDark : oWhite;
 
   Color get inputBorder => brightness == Brightness.light ? oGrey : oWhite70;
   Color get inputDisabledBorder => brightness == Brightness.light ? oGrey70 : oWhite70;
@@ -72,7 +74,7 @@ extension CustomColorScheme on ColorScheme {
   Color get checkBoxBorder => brightness == Brightness.light ? oGrey : oWhite70;
   Color get checkBoxCheck => brightness == Brightness.light ? oGold50 : oGold50;
 
-  Color get colorIcon => brightness == Brightness.light ? oBlack50 : oWhite70;
+  Color get colorIcon => brightness == Brightness.light ? oGrey70 : oWhite70;
 
   Color get textBody => brightness == Brightness.light ? oBlack50 : oWhite70;
   Color get textTitle => brightness == Brightness.light ? oBlack : oWhite;

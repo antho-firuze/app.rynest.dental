@@ -1,6 +1,6 @@
 import 'package:dental/common/widgets/custom_ink_well.dart';
 import 'package:dental/core/app_color.dart';
-import 'package:dental/features/user/model/app_menu.dart';
+import 'package:dental/features/user/controller/menu_ctrl.dart';
 import 'package:dental/utils/ui_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -33,7 +33,6 @@ class MenuButton extends ConsumerWidget {
             child: Card(
               child: CustomInkWell(
                 radius: 13,
-                tooltip: item.tooltip,
                 onTap: onTap,
                 child: Column(
                   children: [
@@ -42,7 +41,7 @@ class MenuButton extends ConsumerWidget {
                       child: Image.asset(iconPath, color: color, height: size - 25, width: size - 25),
                     ),
                     2.height,
-                    Text(item.title.toUpperCase(), softWrap: true).center().family("Roboto").size(12).bold(),
+                    Text(item.name, softWrap: true).center().family("Roboto").size(14).bold(),
                   ],
                 ),
               ),

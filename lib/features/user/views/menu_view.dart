@@ -30,7 +30,7 @@ class MenuView extends ConsumerWidget {
                   final item = appMenus[index];
                   return MenuButton(
                     item: item,
-                    iconPath: ref.read(menuCtrlProvider).getIconPath(item.code),
+                    iconPath: "assets/icons/menu/${item.image}",
                     onTap: () async => await ref.read(menuCtrlProvider).goto(item.code),
                   );
                 },

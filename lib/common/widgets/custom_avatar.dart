@@ -1,70 +1,101 @@
-import 'package:dental/common/widgets/custom_icon.dart';
 import 'package:dental/common/widgets/custom_image.dart';
-import 'package:dental/common/widgets/logo/logo_initial.dart';
 import 'package:dental/core/app_color.dart';
 import 'package:flutter/material.dart';
-import 'package:super_icons/super_icons.dart';
 
 class CustomAvatar extends StatelessWidget {
   const CustomAvatar({
     super.key,
     this.image,
     this.initial,
-    this.width = 60,
-    this.height = 60,
-    this.border,
+    this.size = 45,
+    this.borderRadius,
+    this.ratio = 1.0,
+    this.fit = BoxFit.cover,
+    this.shape = BoxShape.circle,
     this.onTap,
-    this.onTapUpdate,
   });
 
   final String? image;
   final String? initial;
-  final double width;
-  final double height;
-  final double? border;
+  final double size;
+  final BoxFit fit;
+  final double ratio;
+  final BoxShape shape;
+  final BorderRadiusGeometry? borderRadius;
   final Function()? onTap;
-  final Function()? onTapUpdate;
 
   @override
   Widget build(BuildContext context) {
-    return Align(
+    assert(ratio <= 1.5);
+    final imageSrc = image ?? 'assets/images/avatar.png';
+    final errorWidget = CustomImage(src: 'assets/images/avatar-broken.png', onTap: onTap, fit: fit);
+    return SizedBox(
+      width: size,
+      height: size,
       child: Container(
-        width: width,
-        height: height,
-        padding: EdgeInsets.all(border ?? 6),
         decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border.all(color: secondaryLight),
-          borderRadius: BorderRadius.circular(15),
+          color: primaryLight,
+          borderRadius: shape == BoxShape.circle ? null : borderRadius ?? BorderRadius.circular(12),
+          shape: shape,
         ),
-        child: Stack(
-          clipBehavior: Clip.none,
-          fit: StackFit.passthrough,
-          children: [
-            Positioned.fill(
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: image == null && initial == null
-                    ? CustomImage(src: 'assets/images/avatar.png', onTap: onTap)
-                    : image != null
-                        ? CustomImage(src: image, onTap: onTap)
-                        : LogoInitial(initial: initial!),
-              ),
-            ),
-            if (onTapUpdate != null)
-              Positioned(
-                bottom: 0,
-                right: 0,
-                child: CustomIcon(
-                  SuperIcons.is_camera_outline,
-                  size: 30,
-                  backgroundColor: Colors.black45,
-                  onPressed: onTapUpdate!,
+        child: ClipRRect(
+          borderRadius: borderRadius ?? BorderRadius.circular(12),
+          child: shape == BoxShape.circle
+              ? Center(
+                  child: OverflowBox(
+                    maxWidth: size * ratio,
+                    maxHeight: size * ratio,
+                    child: CustomImage(src: imageSrc, onTap: onTap, fit: fit, errorWidget: errorWidget),
+                  ),
+                )
+              : Center(
+                  child: OverflowBox(
+                    maxWidth: size * ratio,
+                    maxHeight: size * ratio,
+                    child: CustomImage(src: imageSrc, onTap: onTap, fit: fit, errorWidget: errorWidget),
+                  ),
                 ),
-              ),
-          ],
         ),
       ),
     );
+    // return SizedBox(
+    //   width: width,
+    //   height: height,
+    //   child: Container(
+    //     // padding: EdgeInsets.all(border ?? 6),
+    //     decoration: BoxDecoration(
+    //       color: primaryLight,
+    //       borderRadius: shape == BoxShape.circle ? null : borderRadius ?? BorderRadius.circular(12),
+    //       shape: shape,
+    //     ),
+    //     child: Stack(
+    //       clipBehavior: Clip.none,
+    //       fit: StackFit.passthrough,
+    //       children: [
+    //         Positioned.fill(
+    //           child: ClipRRect(
+    //             borderRadius: borderRadius ?? BorderRadius.circular(12),
+    //             child: image == null && initial == null
+    //                 ? CustomImage(src: 'assets/images/avatar.png', onTap: onTap)
+    //                 : image != null
+    //                     ? CustomImage(src: image, onTap: onTap)
+    //                     : LogoInitial(initial: initial!),
+    //           ),
+    //         ),
+    //         if (onTapUpdate != null)
+    //           Positioned(
+    //             bottom: 0,
+    //             right: 0,
+    //             child: CustomIcon(
+    //               SuperIcons.is_camera_outline,
+    //               size: 30,
+    //               backgroundColor: Colors.black45,
+    //               onPressed: onTapUpdate!,
+    //             ),
+    //           ),
+    //       ],
+    //     ),
+    //   ),
+    // );
   }
 }

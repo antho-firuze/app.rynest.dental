@@ -1,7 +1,8 @@
 import 'dart:ui';
 
-import 'package:dental/common/controllers/splash_provider.dart';
+import 'package:dental/common/controllers/version_ctrl.dart';
 import 'package:dental/common/widgets/skelton.dart';
+import 'package:dental/common/widgets/version_info.dart';
 import 'package:dental/localization/string_hardcoded.dart';
 import 'package:dental/utils/my_ui.dart';
 import 'package:flutter/material.dart';
@@ -120,20 +121,11 @@ class _SplashViewState extends ConsumerState<SplashView> {
                 ),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.only(bottom: context.screenHeight * .05),
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: ref.watch(getVersionProvider).when(loading: () {
-                  return const Skelton();
-                }, error: (Object error, StackTrace stackTrace) {
-                  return Container();
-                }, data: (String data) {
-                  return Text(
-                    'Version $data',
-                    style: tsTitleM().copyWith(color: primaryLight),
-                  );
-                }),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: EdgeInsets.only(bottom: context.screenHeight * .05),
+                child: VersionInfo(color: primaryLight),
               ),
             ),
           ],

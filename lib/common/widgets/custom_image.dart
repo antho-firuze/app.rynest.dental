@@ -11,16 +11,20 @@ class CustomImage extends StatelessWidget {
   const CustomImage({
     super.key,
     required this.src,
-    this.fit,
-    this.onTap,
-    this.errorTitle = "Foto belum tersedia !",
+    this.fit = BoxFit.cover,
     this.color,
+    this.borderRadius = 0,
+    this.errorWidget,
+    this.errorTitle = "Foto belum tersedia !",
+    this.onTap,
   });
 
   final dynamic src;
-  final BoxFit? fit;
+  final BoxFit fit;
   final Color? color;
+  final double borderRadius;
   final String errorTitle;
+  final Widget? errorWidget;
   final Function()? onTap;
 
   @override
@@ -29,76 +33,58 @@ class CustomImage extends StatelessWidget {
       return ImageFailed(title: errorTitle);
     }
 
+    Widget image = Container();
     if (src is String) {
       var type = src.substring(0, 4).toLowerCase();
       if (type == 'http') {
-        return imageNetwork();
+        image = imageNetwork();
       } else {
         type = src.substring(0, 6).toLowerCase();
         if (type == 'assets') {
-          return imageAsset();
+          image = imageAsset();
+        } else {
+          image = imageEncoder();
         }
-
-        return imageEncoder();
       }
+    } else {
+      image = imageFile();
     }
 
-    return imageFile();
-  }
-
-  Widget imageNetwork() {
     return GestureDetector(
       onTap: onTap,
-      child: Image.network(
-        src,
-        color: color,
-        fit: fit ?? BoxFit.cover,
-        loadingBuilder: (context, child, loadingProgress) => loadingProgress == null
-            ? child
-            : Center(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    CircularProgressIndicator(),
-                    5.height,
-                    Text('loading...').center(),
-                  ],
-                ),
-              ),
-        errorBuilder: (context, error, stackTrace) => ImageFailed(
-          title: errorTitle,
-        ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(borderRadius),
+        child: image,
       ),
     );
   }
 
-  Widget imageFile() => GestureDetector(
-        onTap: onTap,
-        child: Image.file(
-          src,
-          color: color,
-          fit: fit ?? BoxFit.cover,
-        ),
+  Widget imageNetwork() => Image.network(
+        src,
+        color: color,
+        fit: fit,
+        loadingBuilder: (context, child, loadingProgress) => loadingProgress == null
+            ? child
+            : Padding(
+                padding: const EdgeInsets.all(8),
+                child: CircularProgressIndicator(),
+              ),
+        errorBuilder: (context, error, stackTrace) =>
+            errorWidget != null ? errorWidget! : ImageFailed(title: errorTitle),
       );
 
-  Widget imageAsset() => GestureDetector(
-        onTap: onTap,
-        child: Image.asset(
-          src,
-          color: color,
-          fit: fit ?? BoxFit.fill,
-          errorBuilder: (context, error, stackTrace) => ImageFailed(
-            title: errorTitle,
-          ),
-        ),
+  Widget imageFile() => Image.file(src, color: color, fit: fit);
+
+  Widget imageAsset() => Image.asset(
+        src,
+        color: color,
+        fit: fit,
+        errorBuilder: (context, error, stackTrace) => ImageFailed(title: errorTitle),
       );
 
   Widget imageEncoder() {
     Uint8List bytes = base64.decode(src);
-    return Image.memory(
-      bytes,
-      fit: fit ?? BoxFit.cover,
-    );
+    return Image.memory(bytes, fit: fit);
   }
 }
 

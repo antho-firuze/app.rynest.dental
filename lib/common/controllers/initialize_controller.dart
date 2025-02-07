@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:dental/common/controllers/network_ctrl.dart';
-import 'package:dental/common/controllers/package_info_ctrl.dart';
+import 'package:dental/common/controllers/version_ctrl.dart';
 import 'package:dental/features/auth/controller/auth_ctrl.dart';
 import 'package:dental/features/auth/model/jwt_token.dart';
 import 'package:dental/features/notification/controller/notification_ctrl.dart';
@@ -19,12 +19,6 @@ class InitializeCtrl {
   final bool _showWalkThrough;
 
   void initializeApps() async {
-    // Get Device Info
-    // await ref.read(deviceServiceProvider).getDeviceInfo();
-
-    // Initialize Package Info
-    ref.read(packageInfoCtrlProvider).initialize();
-
     // Initialize Network
     ref.read(networkCtrlProvider).initialize();
 

@@ -60,7 +60,7 @@ class ProfileEditView extends ConsumerWidget {
             ),
             10.height,
             GroupList(
-              header: ListTile(title: const Text('Info Profil').bold()),
+              title: ListTile(title: const Text('Info Profil').bold()),
               children: [
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -96,7 +96,7 @@ class ProfileEditView extends ConsumerWidget {
             ),
             30.height,
             GroupList(
-              header: ListTile(title: const Text('Info Pribadi').bold()),
+              title: ListTile(title: const Text('Info Pribadi').bold()),
               children: [
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -217,7 +217,7 @@ class ProfileEditView extends ConsumerWidget {
             ),
             30.height,
             GroupList(
-              header: Center(
+              title: Center(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   child: CustomButton(

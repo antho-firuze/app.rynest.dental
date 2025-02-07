@@ -10,18 +10,15 @@ class AppointmentView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MyUI(
-      child: Scaffold(
-        appBar: AppBar(title: const Text('Appointment'), titleSpacing: 30),
-        backgroundColor: Colors.transparent,
-        body: Container(
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            image: DecorationImage(
-              image: AssetImage(AppAsset.imPattern),
-              repeat: ImageRepeat.repeat,
-              opacity: .2,
+      child: ClipRRect(
+        borderRadius: BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+        child: Scaffold(
+          appBar: AppBar(title: const Text('Appointment'), titleSpacing: 30),
+          body: RefreshIndicator(
+            onRefresh: () async {},
+            child: ListView(
+              children: [],
             ),
-            borderRadius: BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
           ),
         ),
       ),

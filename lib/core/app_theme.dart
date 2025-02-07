@@ -33,16 +33,18 @@ class AppTheme {
       ),
       appBarTheme: AppBarTheme(
         titleSpacing: 0,
-        iconTheme: const IconThemeData(color: Colors.white),
-        // toolbarHeight: 45,
+        iconTheme: IconThemeData(color: colorScheme.appBarIcon),
         color: colorScheme.appBar,
-        foregroundColor: Colors.white,
+        foregroundColor: colorScheme.appBarForeground,
+        surfaceTintColor: colorScheme.appBar,
         titleTextStyle: _textTheme.headlineMedium!.copyWith(
           fontFamily: primaryFont,
           fontWeight: _semiBold,
+          color: colorScheme.appBarText,
         ),
         // elevation: 0,
       ),
+      // iconTheme: IconThemeData(color: colorScheme.colorIcon),
       navigationBarTheme: NavigationBarThemeData(
         labelTextStyle: WidgetStateProperty.resolveWith(
           (states) => states.contains(WidgetState.selected)
@@ -63,12 +65,13 @@ class AppTheme {
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-            backgroundColor: primaryLight,
-            foregroundColor: secondaryLight,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-            textStyle: _textTheme.bodyMedium),
+          foregroundColor: secondaryLight,
+          backgroundColor: primaryLight,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          textStyle: _textTheme.bodyMedium,
+        ),
       ),
       inputDecorationTheme: InputDecorationTheme(
         isDense: true,

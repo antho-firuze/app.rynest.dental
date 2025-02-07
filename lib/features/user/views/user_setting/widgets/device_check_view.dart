@@ -68,72 +68,79 @@ class _DeviceCheckViewState extends ConsumerState<DeviceCheckView> with WidgetsB
     final not = ref.watch(allowAlertProvider);
 
     return MyUI(
-      child: Scaffold(
-        appBar: AppBar(title: const Text('Device Check')),
-        body: ListView(
-          shrinkWrap: true,
-          children: [
-            // GroupList(
-            //   header: ListTile(title: const Text("Services").bold()),
-            //   children: [
-            //     ListTile(
-            //       leading: const Icon(SuperIcons.mg_location_2_line),
-            //       title: const Text('Location Services').bold(),
-            //       subtitle: Text(loc ? PermissionString.gpsEnabled : PermissionString.gpsDisabled),
-            //       trailing: Icon(loc ? SuperIcons.bx_check : SuperIcons.cl_warning_line, color: loc ? oGreen : oRed),
-            //       onTap: loc ? null : () async => await ref.read(permissionServiceProvider).openLocationSettings(),
-            //     ),
-            //     ListTile(
-            //       leading: const Icon(SuperIcons.cl_battery_outline_alerted),
-            //       title: const Text('Battery Optimization').bold(),
-            //       subtitle: Text(batt ? PermissionString.batteryOptzExclude : PermissionString.batteryOptzInclude),
-            //       trailing: Icon(batt ? SuperIcons.bx_check : SuperIcons.cl_warning_line, color: batt ? oGreen : oRed),
-            //       onTap: () async => await ref.read(liveLocationCtrlProvider).showBatterySettings(),
-            //     ),
-            //   ],
-            // ),
-            GroupList(
-              header: ListTile(title: const Text("Permissions").bold()),
-              children: [
-                // ListTile(
-                //   leading: const Icon(SuperIcons.mg_location_2_line),
-                //   title: const Text('Location').bold(),
-                //   subtitle: Text(locPerm ? PermissionString.locationAllowed : PermissionString.locationDisallowed),
-                //   trailing:
-                //       Icon(locPerm ? SuperIcons.bx_check : SuperIcons.cl_warning_line, color: locPerm ? oGreen : oRed),
-                //   onTap: locPerm ? null : () async => await ref.read(locationCtrlProvider).requestGpsPermission(),
-                // ),
-                ListTile(
-                  leading: const Icon(SuperIcons.ev_camera_outline),
-                  title: const Text('Camera & Media').bold(),
-                  subtitle: Text(cam ? PermissionString.cameraAllowed : PermissionString.cameraDisallowed),
-                  trailing: Icon(cam ? SuperIcons.bx_check : SuperIcons.cl_warning_line, color: cam ? oGreen : oRed),
-                  onTap: cam
-                      ? null
-                      : () async => await ref.read(permissionServiceProvider).requestCameraAndMediaPermission(),
-                ),
-                if (ref.read(authUserProvider)?.roleId != 1)
+      child: ClipRRect(
+        borderRadius: BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+        child: Scaffold(
+          appBar: AppBar(title: const Text('Device Check')),
+          body: ListView(
+            shrinkWrap: true,
+            children: [
+              // GroupList(
+              //   header: ListTile(title: const Text("Services").bold()),
+              //   children: [
+              //     ListTile(
+              //       leading: const Icon(SuperIcons.mg_location_2_line),
+              //       title: const Text('Location Services').bold(),
+              //       subtitle: Text(loc ? PermissionString.gpsEnabled : PermissionString.gpsDisabled),
+              //       trailing: Icon(loc ? SuperIcons.bx_check : SuperIcons.cl_warning_line, color: loc ? oGreen : oRed),
+              //       onTap: loc ? null : () async => await ref.read(permissionServiceProvider).openLocationSettings(),
+              //     ),
+              //     ListTile(
+              //       leading: const Icon(SuperIcons.cl_battery_outline_alerted),
+              //       title: const Text('Battery Optimization').bold(),
+              //       subtitle: Text(batt ? PermissionString.batteryOptzExclude : PermissionString.batteryOptzInclude),
+              //       trailing: Icon(batt ? SuperIcons.bx_check : SuperIcons.cl_warning_line, color: batt ? oGreen : oRed),
+              //       onTap: () async => await ref.read(liveLocationCtrlProvider).showBatterySettings(),
+              //     ),
+              //   ],
+              // ),
+              GroupList(
+                showDividerTop: false,
+                showDividerBottom: true,
+                title: ListTile(title: const Text("Permissions").bold()),
+                children: [
+                  // ListTile(
+                  //   leading: const Icon(SuperIcons.mg_location_2_line),
+                  //   title: const Text('Location').bold(),
+                  //   subtitle: Text(locPerm ? PermissionString.locationAllowed : PermissionString.locationDisallowed),
+                  //   trailing:
+                  //       Icon(locPerm ? SuperIcons.bx_check : SuperIcons.cl_warning_line, color: locPerm ? oGreen : oRed),
+                  //   onTap: locPerm ? null : () async => await ref.read(locationCtrlProvider).requestGpsPermission(),
+                  // ),
                   ListTile(
-                    leading: const Icon(SuperIcons.bx_microphone),
-                    title: const Text('Microphone').bold(),
-                    subtitle: Text(mic ? PermissionString.microphoneAllowed : PermissionString.microphoneDisallowed),
-                    trailing: Icon(mic ? SuperIcons.bx_check : SuperIcons.cl_warning_line, color: mic ? oGreen : oRed),
-                    onTap: mic
+                    leading: const Icon(SuperIcons.ev_camera_outline),
+                    title: const Text('Camera & Media').bold(),
+                    subtitle: Text(cam ? PermissionString.cameraAllowed : PermissionString.cameraDisallowed),
+                    trailing: Icon(cam ? SuperIcons.bx_check : SuperIcons.cl_warning_line, color: cam ? oGreen : oRed),
+                    onTap: cam
                         ? null
-                        : () async => await ref.read(permissionServiceProvider).requestMicrophonePermission(),
+                        : () async => await ref.read(permissionServiceProvider).requestCameraAndMediaPermission(),
                   ),
-                ListTile(
-                  leading: const Icon(SuperIcons.mg_bell_ringing_line),
-                  title: const Text('Notification').bold(),
-                  subtitle: Text(not ? PermissionString.notificationAllowed : PermissionString.notificationDisallowed),
-                  trailing: Icon(not ? SuperIcons.bx_check : SuperIcons.cl_warning_line, color: not ? oGreen : oRed),
-                  onTap: not
-                      ? null
-                      : () async => await ref.read(permissionServiceProvider).requestNotificationPermission(),
-                ),
-              ],
-            ),
-          ],
+                  if (ref.read(authUserProvider)?.roleId != 1)
+                    ListTile(
+                      leading: const Icon(SuperIcons.bx_microphone),
+                      title: const Text('Microphone').bold(),
+                      subtitle: Text(mic ? PermissionString.microphoneAllowed : PermissionString.microphoneDisallowed),
+                      trailing:
+                          Icon(mic ? SuperIcons.bx_check : SuperIcons.cl_warning_line, color: mic ? oGreen : oRed),
+                      onTap: mic
+                          ? null
+                          : () async => await ref.read(permissionServiceProvider).requestMicrophonePermission(),
+                    ),
+                  ListTile(
+                    leading: const Icon(SuperIcons.mg_bell_ringing_line),
+                    title: const Text('Notification').bold(),
+                    subtitle:
+                        Text(not ? PermissionString.notificationAllowed : PermissionString.notificationDisallowed),
+                    trailing: Icon(not ? SuperIcons.bx_check : SuperIcons.cl_warning_line, color: not ? oGreen : oRed),
+                    onTap: not
+                        ? null
+                        : () async => await ref.read(permissionServiceProvider).requestNotificationPermission(),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -1,9 +1,9 @@
 import 'package:dental/common/widgets/custom_avatar.dart';
 import 'package:dental/common/widgets/custom_input.dart';
-import 'package:dental/core/app_asset.dart';
-import 'package:dental/features/user/views/home/widgets/menu_list.dart';
+import 'package:dental/core/app_color.dart';
+import 'package:dental/features/user/controller/profile_ctrl.dart';
+import 'package:dental/features/user/views/home/widgets/menu_layout.dart';
 import 'package:dental/features/user/views/home/widgets/carousel_page.dart';
-import 'package:dental/localization/string_hardcoded.dart';
 import 'package:dental/utils/my_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -34,62 +34,53 @@ class _HomeViewState extends ConsumerState<HomeView> with WidgetsBindingObserver
 
   @override
   Widget build(BuildContext context) {
+    final profile = ref.watch(profileProvider);
+
     return MyUI(
       child: Scaffold(
         appBar: AppBar(
+          toolbarHeight: kToolbarHeight + 20,
+          backgroundColor: primaryLight,
           leadingWidth: 90,
-          leading: const CustomAvatar(
-            width: 40,
-            height: 40,
-          ),
-          title: Text("Hi, Alexis Anderson".hardcoded),
+          leading: Center(child: CustomAvatar(image: profile?.photo)),
+          title: Text("Hi, ${profile?.fullName}").clr(oWhite),
           actions: [
             IconButton(
               onPressed: () {},
-              icon: const Icon(SuperIcons.cl_bell_line),
+              icon: const Icon(SuperIcons.cl_bell_line, color: oWhite),
             ),
             10.width,
           ],
         ),
         backgroundColor: Colors.transparent,
-        body: Padding(
-          padding: const EdgeInsets.only(top: 10),
-          child: ClipRRect(
-            borderRadius: const BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
-            child: Container(
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                image: DecorationImage(
-                  image: AssetImage(AppAsset.imPattern),
-                  repeat: ImageRepeat.repeat,
-                  opacity: .2,
-                ),
-                borderRadius: BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
-              ),
-              child: RefreshIndicator(
-                onRefresh: () async {},
-                child: ListView(
-                  shrinkWrap: true,
-                  children: [
-                    25.height,
-                    // Search
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
-                      child: CustomInput(
-                        prefixIcon: Icon(SuperIcons.lc_search),
-                        hintText: "Search",
-                      ),
+        body: ClipRRect(
+          borderRadius: const BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+          child: Container(
+            color: oWhite,
+            child: RefreshIndicator(
+              onRefresh: () async {},
+              child: ListView(
+                shrinkWrap: true,
+                children: [
+                  25.height,
+                  // Search
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    child: CustomInput(
+                      prefixIcon: Icon(SuperIcons.lc_search),
+                      hintText: "Search",
+                      autoLabel: false,
                     ),
-                    20.height,
-                    // Carousel image
-                    const CarouselPage(),
-                    20.height,
-                    // App Menu
-                    const MenuList(),
-                    // Bottom
-                    60.height,
-                  ],
-                ),
+                  ),
+                  20.height,
+                  // Carousel image
+                  const CarouselPage(),
+                  20.height,
+                  // App Menu
+                  const MenuLayout(),
+                  // Bottom
+                  60.height,
+                ],
               ),
             ),
           ),

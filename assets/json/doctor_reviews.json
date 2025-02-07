@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Anna Joe",
+    "rating": 5,
+    "comment": "Pelayanan di klinik ini sangat memuaskan! Dokter gigi dan stafnya ramah, profesional, dan sangat membantu. Dokter menjelaskan setiap langkah perawatan dengan jelas, sehingga saya merasa nyaman dan tidak khawatir. Hasil scaling gigi saya juga sangat bersih dan gigi terasa lebih sehat. Terima kasih!",
+    "avatar": "https://avatar.iran.liara.run/public/boy"
+  },
+  {
+    "name": "John Doe",
+    "rating": 4,
+    "comment": "Klinik gigi ini memiliki fasilitas yang modern dan bersih. Ruang tunggu nyaman, dan peralatan yang digunakan terlihat sangat higienis. Dokter giginya sangat teliti dan sabar dalam melakukan perawatan. Saya sangat puas dengan hasil pembersihan karang gigi yang dilakukan. Recommended banget!",
+    "avatar": "https://avatar.iran.liara.run/public/girl"
+  },
+  {
+    "name": "Kim",
+    "rating": 5,
+    "comment": "Saya baru saja melakukan scaling dan polishing di sini, dan hasilnya luar biasa! Dokter sangat detail dalam membersihkan karang gigi, bahkan di area yang sulit sekalipun. Gigi saya terasa sangat halus dan bersih setelah perawatan. Prosesnya juga cepat dan tidak sakit. Sangat recommended untuk yang ingin perawatan gigi berkualitas!",
+    "avatar": "https://avatar.iran.liara.run/public/boy"
+  },
+  {
+    "name": "Matthew Doe",
+    "rating": 4,
+    "comment": "Pelayanan di sini sangat cepat dan efisien. Saya tidak perlu menunggu lama meskipun datang tanpa appointment. Dokter giginya sangat ahli dan ramah, menjelaskan kondisi gigi saya dengan jelas. Hasil scaling gigi saya sangat memuaskan, dan saya pasti akan kembali untuk perawatan rutin. Terima kasih, tim!",
+    "avatar": "https://avatar.iran.liara.run/public/girl"
+  },
+  {
+    "name": "Fix Joe",
+    "rating": 5,
+    "comment": "Pengalaman pertama saya di klinik ini sangat menyenangkan. Dokter dan stafnya sangat perhatian, terutama karena saya agak takut dengan perawatan gigi. Mereka membuat saya merasa nyaman dan tenang selama proses scaling. Hasilnya juga sangat bagus, gigi saya terlihat lebih cerah dan sehat. Terima kasih untuk pelayanan terbaiknya!",
+    "avatar": "https://avatar.iran.liara.run/public/boy"
+  }
+]
