@@ -1,11 +1,10 @@
-import 'package:dental/common/exceptions/data_failed.dart';
+import 'package:dental/common/exceptions/data_exeception_layout.dart';
 import 'package:dental/common/widgets/custom_input.dart';
 import 'package:dental/common/widgets/skelton.dart';
 import 'package:dental/core/app_color.dart';
 import 'package:dental/features/product/controller/doctor_ctrl.dart';
 import 'package:dental/features/product/views/nurse/nurse_detail_view.dart';
 import 'package:dental/features/product/views/widgets/list_nurse_layout.dart';
-import 'package:dental/features/user/controller/medical_record_ctrl.dart';
 import 'package:dental/utils/my_ui.dart';
 import 'package:dental/utils/page_utils.dart';
 import 'package:dental/utils/ui_helper.dart';
@@ -52,7 +51,7 @@ class NurseListView extends ConsumerWidget {
                       skipLoadingOnRefresh: false,
                       data: (data) {
                         if (data == null || data.isEmpty) {
-                          return DataFailed();
+                          return DataExceptionLayout(type: ExeceptionType.dataEmpty);
                         }
 
                         final items = data;

@@ -4,7 +4,8 @@ import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:dental/common/widgets/button/custom_button.dart';
 import 'package:dental/core/app_color.dart';
 import 'package:dental/features/product/controller/product_ctrl.dart';
-import 'package:dental/features/product/views/doctor/doctor_selection_view.dart';
+import 'package:dental/features/product/controller/treatment_ctrl.dart';
+import 'package:dental/features/product/views/treatment/visit_schedule_view.dart';
 import 'package:dental/utils/my_ui.dart';
 import 'package:dental/utils/page_utils.dart';
 import 'package:dental/utils/ui_helper.dart';
@@ -13,25 +14,41 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:super_icons/super_icons.dart';
 import 'package:teeth_selector/teeth_selector.dart';
 
-class FillingView extends ConsumerWidget {
-  const FillingView({super.key});
+class TeethView extends ConsumerWidget {
+  const TeethView(this.type, {super.key});
+
+  final TreatmentType type;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    Future.delayed(Duration.zero).then((_) {
+      ref.read(treatmentTypeProvider.notifier).state = type;
+    });
+
     return MyUI(
       connectivityInfoBottomPadding: kToolbarHeight,
       child: ClipRRect(
         borderRadius: const BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
         child: Scaffold(
-          appBar: AppBar(title: Text('Filling'), centerTitle: true),
+          appBar: AppBar(title: Text(type.name), centerTitle: true),
           bottomNavigationBar: Container(
             height: kToolbarHeight,
-            color: oBlue70,
             padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+            decoration: BoxDecoration(
+              color: oWhite,
+              boxShadow: [
+                BoxShadow(
+                  color: Color(0x23000000),
+                  blurRadius: 3.0,
+                  offset: Offset(0.0, -1.0),
+                ),
+              ],
+            ),
             child: SizedBox(
               width: double.infinity,
               child: CustomButton(
-                // flat: true,
+                color: oRed50,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -40,7 +57,7 @@ class FillingView extends ConsumerWidget {
                     const Icon(SuperIcons.bx_edit),
                   ],
                 ),
-                onPressed: () => context.goto(page: const DoctorSelectionView()),
+                onPressed: () => context.goto(page: const VisitScheduleView()),
               ),
             ),
           ),
@@ -79,22 +96,16 @@ class FillingView extends ConsumerWidget {
                     ),
                     20.height,
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 40),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          CustomButton(
-                            child: const Text('Kanan'),
-                            onPressed: () {},
-                          ),
-                          CustomButton(
-                            child: const Text('Kiri'),
-                            onPressed: () {},
-                          ),
+                          Text('Kanan').bold(),
+                          Text('Kiri').bold(),
                         ],
                       ),
                     ),
-                    20.height,
+                    40.height,
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 35),
                       child: TeethSelector(

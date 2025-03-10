@@ -1,4 +1,7 @@
+import 'package:dental/common/services/snackbar_service.dart';
+import 'package:dental/core/app_color.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:dental/localization/string_hardcoded.dart';
 import 'package:super_icons/super_icons.dart';
@@ -27,17 +30,52 @@ class DashboardView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
+    int backPressed = 0;
     if (size.width < 450) {
-      return ScaffoldWithNavigationBar(
-        body: navigationShell,
-        currentIndex: navigationShell.currentIndex,
-        onDestinationSelected: _goBranch,
+      return PopScope(
+        canPop: false,
+        onPopInvokedWithResult: (didPop, result) async {
+          if (didPop) return;
+
+          backPressed++;
+          debugPrint('backPressed = $backPressed');
+          if (backPressed > 1) {
+            SystemNavigator.pop();
+          } else {
+            SnackBarService(message: 'Tekan lagi untuk keluar').confirm();
+            await Future.delayed(Duration(seconds: 2));
+            backPressed = 0;
+            debugPrint('backPressed = $backPressed');
+          }
+        },
+        child: ScaffoldWithNavigationBar(
+          body: navigationShell,
+          currentIndex: navigationShell.currentIndex,
+          onDestinationSelected: _goBranch,
+        ),
       );
     } else {
-      return ScaffoldWithNavigationRail(
-        body: navigationShell,
-        currentIndex: navigationShell.currentIndex,
-        onDestinationSelected: _goBranch,
+      return PopScope(
+        canPop: false,
+        onPopInvokedWithResult: (didPop, result) async {
+          if (didPop) return;
+
+          backPressed++;
+          debugPrint('backPressed = $backPressed');
+          if (backPressed > 1) {
+            SystemNavigator.pop();
+          } else {
+            SnackBarService(message: 'Tekan lagi untuk keluar').confirm();
+            await Future.delayed(Duration(seconds: 2));
+            backPressed = 0;
+            debugPrint('backPressed = $backPressed');
+          }
+        },
+        child: ScaffoldWithNavigationRail(
+          body: navigationShell,
+          currentIndex: navigationShell.currentIndex,
+          onDestinationSelected: _goBranch,
+        ),
       );
     }
   }
@@ -63,7 +101,7 @@ class ScaffoldWithNavigationBar extends StatelessWidget {
         bottomNavigationBar: NavigationBar(
           height: 55,
           indicatorShape: const CircleBorder(eccentricity: 1.0),
-          labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
+          labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
           indicatorColor: Colors.transparent,
           selectedIndex: currentIndex,
           destinations: [
@@ -73,14 +111,18 @@ class ScaffoldWithNavigationBar extends StatelessWidget {
               label: 'Home'.hardcoded,
             ),
             NavigationDestination(
-              icon: const Icon(SuperIcons.ev_calendar_outline),
-              selectedIcon: const Icon(SuperIcons.ev_calendar),
-              label: 'Appointment'.hardcoded,
+              icon: Image.asset('assets/icons/menu/ic-treatment.png', width: 25, color: oGrey70),
+              selectedIcon: Image.asset('assets/icons/menu/ic-treatment.png', width: 30),
+              // icon: const Icon(SuperIcons.ev_calendar_outline),
+              // selectedIcon: const Icon(SuperIcons.ev_calendar),
+              label: 'Treatment'.hardcoded,
             ),
             NavigationDestination(
-              icon: const Icon(SuperIcons.mg_bill_line),
-              selectedIcon: const Icon(SuperIcons.mg_bill_fill),
-              label: 'History'.hardcoded,
+              icon: Image.asset('assets/icons/menu/ic-records.png', width: 20),
+              selectedIcon: Image.asset('assets/icons/menu/ic-records.png', width: 25),
+              // icon: const Icon(SuperIcons.mg_bill_line),
+              // selectedIcon: const Icon(SuperIcons.mg_bill_fill),
+              label: 'Medical Record'.hardcoded,
             ),
             NavigationDestination(
               icon: const Icon(SuperIcons.bs_person),
@@ -124,14 +166,18 @@ class ScaffoldWithNavigationRail extends StatelessWidget {
                   label: Text('Home'.hardcoded),
                 ),
                 NavigationRailDestination(
-                  icon: const Icon(SuperIcons.ev_calendar_outline),
-                  selectedIcon: const Icon(SuperIcons.ev_calendar),
-                  label: Text('Appointment'.hardcoded),
+                  icon: Image.asset('assets/icons/menu/ic-treatment.png', width: 25, color: oGrey70),
+                  selectedIcon: Image.asset('assets/icons/menu/ic-treatment.png', width: 30),
+                  // icon: const Icon(SuperIcons.ev_calendar_outline),
+                  // selectedIcon: const Icon(SuperIcons.ev_calendar),
+                  label: Text('Treatment'.hardcoded),
                 ),
                 NavigationRailDestination(
-                  icon: const Icon(SuperIcons.mg_bill_line),
-                  selectedIcon: const Icon(SuperIcons.mg_bill_fill),
-                  label: Text('History'.hardcoded),
+                  icon: Image.asset('assets/icons/menu/ic-records.png', width: 20),
+                  selectedIcon: Image.asset('assets/icons/menu/ic-records.png', width: 25),
+                  // icon: const Icon(SuperIcons.mg_bill_line),
+                  // selectedIcon: const Icon(SuperIcons.mg_bill_fill),
+                  label: Text('Medical Record'.hardcoded),
                 ),
                 NavigationRailDestination(
                   icon: const Icon(SuperIcons.bs_person),

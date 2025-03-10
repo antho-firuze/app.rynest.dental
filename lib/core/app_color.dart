@@ -79,9 +79,11 @@ extension CustomColorScheme on ColorScheme {
   Color get textBody => brightness == Brightness.light ? oBlack50 : oWhite70;
   Color get textTitle => brightness == Brightness.light ? oBlack : oWhite;
 
-  Color get navigationBarSelected => brightness == Brightness.light ? oBlack50 : oWhite30;
+  Color get navigationBarBackground => brightness == Brightness.light ? oWhite30 : oBlack50;
+  Color get navigationBarShadow => brightness == Brightness.light ? oBlack50 : oWhite30;
+  Color get navigationBarSelected => brightness == Brightness.light ? primaryLight : oWhite30;
   Color get navigationBarUnSelected => brightness == Brightness.light ? oBlack50 : oWhite70;
-  Color get navigationRailSelected => brightness == Brightness.light ? oBlack50 : oWhite30;
+  Color get navigationRailSelected => brightness == Brightness.light ? primaryLight : oWhite30;
   Color get navigationRailUnSelected => brightness == Brightness.light ? oBlack50 : oWhite70;
 
   Color get div =>

@@ -1,6 +1,6 @@
-import 'package:dental/features/user/views/appointment_view.dart';
-import 'package:dental/features/user/views/history_view.dart';
+import 'package:dental/features/product/views/treatment/treatment_view.dart';
 import 'package:dental/features/user/views/home/home_view.dart';
+import 'package:dental/features/user/views/medical_record/medical_records_view.dart';
 import 'package:dental/features/user/views/profile/profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -13,7 +13,7 @@ import 'package:dental/common/views/dashboard_view.dart';
 // Private Navigators
 final rootNavigatorKey = GlobalKey<NavigatorState>();
 final _homeNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'home');
-final _appointmentNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'appointment');
+final _treatmentNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'appointment');
 final _historyNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'history');
 final _profileNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'profile');
 
@@ -40,13 +40,13 @@ final GoRouter router = GoRouter(
           ],
         ),
         StatefulShellBranch(
-          navigatorKey: _appointmentNavigatorKey,
+          navigatorKey: _treatmentNavigatorKey,
           routes: [
             GoRoute(
-              path: AppointmentView.routeName,
+              path: TreatmentView.routeName,
               pageBuilder: (context, state) => NoTransitionPage(
                 key: state.pageKey,
-                child: const AppointmentView(),
+                child: const TreatmentView(),
               ),
             )
           ],
@@ -55,10 +55,10 @@ final GoRouter router = GoRouter(
           navigatorKey: _historyNavigatorKey,
           routes: [
             GoRoute(
-              path: HistoryView.routeName,
+              path: MedicalRecordsView.routeName,
               pageBuilder: (context, state) => NoTransitionPage(
                 key: state.pageKey,
-                child: const HistoryView(),
+                child: const MedicalRecordsView(),
               ),
             )
           ],

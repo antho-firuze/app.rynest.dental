@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:dental/common/controllers/camera_ctrl.dart';
 import 'package:dental/common/controllers/permission_ctrl.dart';
-import 'package:dental/common/exceptions/warning_exeption.dart';
+import 'package:dental/common/exceptions/warning_layout.dart';
 import 'package:dental/common/widgets/button/custom_button.dart';
 import 'package:dental/common/widgets/button/custom_iconbutton.dart';
 import 'package:dental/core/app_color.dart';
@@ -59,7 +59,7 @@ class _CameraViewState extends ConsumerState<CameraView> {
           appBar: AppBar(title: Text('Ambil Gambar'.hardcoded)),
           body: ListView(
             children: [
-              WarningException(
+              WarningLayout(
                 title: 'Izinkan akses Galery & Camera !',
                 child: ElevatedButton(
                   onPressed: () async => await ref.read(cameraCtrlProvider).getPermission(),

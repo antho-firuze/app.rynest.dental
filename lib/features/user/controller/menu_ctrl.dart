@@ -1,11 +1,8 @@
-import 'package:dental/features/auth/controller/auth_ctrl.dart';
 import 'package:dental/features/product/views/doctor/doctor_list_view.dart';
 import 'package:dental/features/product/views/facility_view.dart';
 import 'package:dental/features/product/views/nurse/nurse_list_view.dart';
-import 'package:dental/features/user/views/history_view.dart';
+import 'package:dental/features/user/views/history/history_view.dart';
 import 'package:dental/features/user/views/medical_record/medical_records_view.dart';
-import 'package:dental/features/product/views/treatment/treatment_view.dart';
-import 'package:dental/core/app_asset.dart';
 import 'package:dental/features/tele-dentistry/views/tele_dentistry_view.dart';
 import 'package:dental/features/user/views/user_setting/user_setting_view.dart';
 import 'package:dental/utils/page_utils.dart';
@@ -110,14 +107,15 @@ class MenuCtrl {
 
   Future goto(String code) async {
     return switch (code) {
-      "00" => await ref.read(pageUtilsProvider).goto(page: const TreatmentView()),
-      "01" => await ref.read(pageUtilsProvider).goto(page: const TreatmentView()),
-      "02" => await ref.read(pageUtilsProvider).goto(page: const MedicalRecordsView()),
+      "00" => ref.read(goRouterProvider).go('/treatment'),
+      // "01" => await ref.read(pageUtilsProvider).goto(page: const TreatmentView()),
+      "02" => ref.read(goRouterProvider).go('/medical'),
+      // "02" => await ref.read(pageUtilsProvider).goto(page: const MedicalRecordsView()),
       "03" => await ref.read(pageUtilsProvider).goto(page: const DoctorListView()),
       "04" => await ref.read(pageUtilsProvider).goto(page: const TeleDentistryView()),
       "05" => await ref.read(pageUtilsProvider).goto(page: const FacilityView()),
       "06" => await ref.read(pageUtilsProvider).goto(page: const NurseListView()),
-      "07" => ref.read(goRouterProvider).go('/history'),
+      "07" => await ref.read(pageUtilsProvider).goto(page: const HistoryView()),
       "08" => await ref.read(pageUtilsProvider).goto(page: const UserSettingView()),
       String() => '',
     };

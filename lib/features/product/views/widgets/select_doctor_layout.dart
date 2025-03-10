@@ -38,6 +38,7 @@ class SelectDoctorLayout extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: CustomButton(
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
               onPressed: onSelected,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,

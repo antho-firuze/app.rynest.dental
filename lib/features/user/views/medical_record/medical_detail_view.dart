@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:dental/common/widgets/button/custom_button.dart';
 import 'package:dental/common/widgets/forms/field_list.dart';
 import 'package:dental/core/app_color.dart';
 import 'package:dental/features/product/controller/product_ctrl.dart';
@@ -44,6 +43,7 @@ class MedicalDetailView extends ConsumerWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 12),
                       child: Column(
                         spacing: 10,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           FieldList(
                             caption: Text('Nama :').bold(),
@@ -90,20 +90,14 @@ class MedicalDetailView extends ConsumerWidget {
                         ],
                       ),
                     ),
-                    20.height,
+                    40.height,
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 40),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          CustomButton(
-                            child: const Text('Kanan'),
-                            onPressed: () {},
-                          ),
-                          CustomButton(
-                            child: const Text('Kiri'),
-                            onPressed: () {},
-                          ),
+                          Text('Kanan').bold(),
+                          Text('Kiri').bold(),
                         ],
                       ),
                     ),

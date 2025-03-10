@@ -220,6 +220,23 @@ extension StringConversionDateTime on String {
     return DateTime.now();
   }
 
+  /// Format custom
+  ///
+  /// locale = 'id' | 'en'
+  ///
+  /// Example
+  /// ```
+  /// 'yyyy-MM-dd'             -> 1996-10-07 (Database format)
+  /// 'd-MM-yyyy'              -> 7-10-1996
+  /// 'd MMM yyyy' | 'yMMMd'   -> 7 Okt 1996
+  /// 'd MMMM yyyy' | 'yMMMMd' -> 7 Oktober 1996
+  /// 'E, d MMM yyyy'          -> Sel, 7 Okt 1996
+  /// 'EEEE, d MMM yyyy'       -> Selasa, 7 Okt 1996
+  /// 'HH:mm'                  -> 17:08
+  /// 'HH:mm:ss'               -> 17:08:01
+  /// 'HH:mm a'                -> 05:08 PM
+  /// 'HH:mm:ss a'             -> 05:08:01 PM
+  /// ```
   DateTime toDateTime([String? format]) {
     if (format != null) {
       return DateFormat(format).parse(this);

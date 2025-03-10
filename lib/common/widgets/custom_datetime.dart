@@ -1,4 +1,4 @@
-import 'package:dental/utils/ui_helper.dart';
+import 'package:dental/utils/datetime_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
@@ -6,8 +6,8 @@ import 'package:go_router/go_router.dart';
 import 'button/custom_button.dart';
 import 'custom_dialog.dart';
 
-class CustomCombo extends StatefulWidget {
-  const CustomCombo({
+class CustomDateTime extends StatefulWidget {
+  const CustomDateTime({
     super.key,
     this.controller,
     this.onSubmitted,
@@ -19,16 +19,14 @@ class CustomCombo extends StatefulWidget {
     this.suffixIcon,
     this.enabled = true,
     this.readOnly = false,
-    this.isPassword = false,
-    this.maxLines = 1,
-    this.maxLength,
     this.keyboardType = TextInputType.text,
     this.textInputAction = TextInputAction.next,
     this.enterPressed,
     this.formatter,
     this.validator,
     this.onChanged,
-    this.items = const [],
+    this.firstDate,
+    this.lastDate,
   });
 
   final String? initialValue;
@@ -36,13 +34,10 @@ class CustomCombo extends StatefulWidget {
   final String? helperText;
   final TextEditingController? controller;
   final FocusNode? focusNode;
-  final Function(dynamic val)? onChanged;
+  final Function(DateTime? val)? onChanged;
   final Function(String val)? onSubmitted;
   final bool enabled;
   final bool readOnly;
-  final bool? isPassword;
-  final int maxLines;
-  final int? maxLength;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
   final TextInputType keyboardType;
@@ -50,13 +45,14 @@ class CustomCombo extends StatefulWidget {
   final Function()? enterPressed;
   final List<TextInputFormatter>? formatter;
   final String? Function(String? val)? validator;
-  final List<String> items;
+  final DateTime? firstDate;
+  final DateTime? lastDate;
 
   @override
-  State<CustomCombo> createState() => _CustomComboState();
+  State<CustomDateTime> createState() => _CustomDateTimeState();
 }
 
-class _CustomComboState extends State<CustomCombo> with SingleTickerProviderStateMixin {
+class _CustomDateTimeState extends State<CustomDateTime> with SingleTickerProviderStateMixin {
   bool isEmpty = true;
   bool showPassword = false;
   String? labelText;
@@ -75,10 +71,6 @@ class _CustomComboState extends State<CustomCombo> with SingleTickerProviderStat
       controller.text = widget.initialValue!;
     }
     controller.addListener(checkValue);
-    // Future.delayed(
-    //   Duration.zero,
-    //   () => SystemChannels.textInput.invokeMethod('TextInput.hide'),
-    // );
   }
 
   void checkValue() {
@@ -87,14 +79,6 @@ class _CustomComboState extends State<CustomCombo> with SingleTickerProviderStat
       labelText = controller.text.isEmpty ? null : widget.hintText;
     });
   }
-
-  Widget? generateCounter(BuildContext context,
-          {required int currentLength, required bool isFocused, required int? maxLength}) =>
-      widget.enabled && !widget.readOnly
-          ? currentLength >= maxLength!
-              ? Text('Max $maxLength chars').tsCaption().clr(Colors.red)
-              : Text('$currentLength').tsCaption()
-          : null;
 
   @override
   Widget build(BuildContext context) {
@@ -108,29 +92,16 @@ class _CustomComboState extends State<CustomCombo> with SingleTickerProviderStat
       child: (!isEmpty && !widget.readOnly && widget.enabled) ? Icon(Icons.clear) : Container(),
     );
 
-    var showPasswordVisibility = InkWell(
-      onTap: () => setState(() {
-        showPassword = !showPassword;
-      }),
-      child: widget.isPassword == true
-          ? SizedBox(width: 45, child: Icon(showPassword ? Icons.visibility : Icons.visibility_off))
-          : Container(),
-    );
-
     return TextFormField(
       controller: controller,
       autofocus: false,
       focusNode: widget.focusNode,
       // style: tsBodyM(),
-      maxLines: widget.maxLines,
-      maxLength: widget.maxLength,
       enabled: widget.enabled,
       readOnly: true,
-      obscureText: showPassword ? !showPassword : widget.isPassword!,
-      buildCounter: generateCounter,
-      onChanged: (value) {
-        if (widget.onChanged != null) widget.onChanged!(value);
-      },
+      // onChanged: (value) {
+      //   if (widget.onChanged != null) widget.onChanged!(value);
+      // },
       onFieldSubmitted: widget.onSubmitted,
       onEditingComplete: () {
         FocusScope.of(context).nextFocus();
@@ -149,7 +120,6 @@ class _CustomComboState extends State<CustomCombo> with SingleTickerProviderStat
         hintText: widget.hintText,
         // hintStyle: tsBodyM(),
         helperText: widget.helperText,
-        counterText: widget.maxLength == null ? '' : null,
         prefixIcon: widget.prefixIcon,
         suffixIcon: Row(
           mainAxisSize: MainAxisSize.min,
@@ -159,9 +129,8 @@ class _CustomComboState extends State<CustomCombo> with SingleTickerProviderStat
             showClearBtn,
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 5),
-              child: Icon(Icons.arrow_drop_down, size: 30),
+              child: Icon(Icons.calendar_month, size: 30),
             ),
-            showPasswordVisibility,
             widget.suffixIcon ?? Container(),
           ],
         ),
@@ -171,56 +140,24 @@ class _CustomComboState extends State<CustomCombo> with SingleTickerProviderStat
           minHeight: 47,
         ),
       ),
-      onTap: () async => await showDialog(
-        context: context,
-        builder: (context) {
-          return ComboDialog<String>(
-            items: widget.items,
-            onSelected: (value) => controller.text = value,
-          );
-        },
-      ),
-    );
-  }
-}
+      onTap: () async {
+        final initialDate = controller.text.isEmpty ? DateTime.now() : controller.text.toDateTime('d-MM-yyyy');
+        final DateTime? pickedDate = await showDatePicker(
+          context: context,
+          initialDate: initialDate,
+          locale: Locale('id'),
+          fieldHintText: 'dd/mm/yyyy',
+          firstDate: widget.firstDate ?? DateTime(1950),
+          lastDate: widget.lastDate ?? DateTime(DateTime.now().year + 1),
+        );
 
-class ComboDialog<T> extends StatelessWidget {
-  const ComboDialog({
-    super.key,
-    required this.items,
-    this.onSelected,
-  });
-
-  final List<T> items;
-  final Function(T value)? onSelected;
-
-  @override
-  Widget build(BuildContext context) {
-    return CustomDialog(
-      title: Text('Pilihan :'),
-      content: SingleChildScrollView(
-        child: Column(
-          children: List.generate(
-            items.length,
-            (index) {
-              final item = items[index];
-              return ListTile(
-                title: Text("$item"),
-                onTap: () {
-                  if (onSelected != null) onSelected!(item);
-                  context.pop();
-                },
-              );
-            },
-          ),
-        ),
-      ),
-      actions: [
-        CustomButton(
-          child: const Text('BATAL'),
-          onPressed: () => context.pop(),
-        ),
-      ],
+        if (pickedDate != null) {
+          controller.text = pickedDate.custom('d-MM-yyyy');
+          if (widget.onChanged != null) {
+            widget.onChanged!(pickedDate);
+          }
+        }
+      },
     );
   }
 }

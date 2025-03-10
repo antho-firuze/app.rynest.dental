@@ -1,5 +1,5 @@
-import 'package:dental/common/exceptions/image_failed.dart';
-import 'package:dental/common/exceptions/loading_failed.dart';
+import 'package:dental/common/exceptions/data_exeception_layout.dart';
+import 'package:dental/common/exceptions/image_failed_layout.dart';
 import 'package:dental/core/app_color.dart';
 import 'package:dental/features/user/controller/carousel_ctrl.dart';
 import 'package:dental/utils/orientation_utils.dart';
@@ -18,12 +18,12 @@ class CarouselPage extends ConsumerWidget {
     return ref.watch(fetchCarouselProvider).when(
           skipLoadingOnRefresh: false,
           loading: () => const Center(child: CircularProgressIndicator()),
-          error: (error, stackTrace) {
-            debugPrint(error.toString());
-            return LoadingFailed(onTap: () => ref.refresh(fetchCarouselProvider));
-          },
+          error: (error, stackTrace) => DataExceptionLayout(
+            error: error,
+            onTap: () => ref.refresh(fetchCarouselProvider),
+          ),
           data: (data) {
-            if (data == null || data.isEmpty) return ImageFailed(onTap: () => ref.refresh(fetchCarouselProvider));
+            if (data == null || data.isEmpty) return ImageFailedLayout(onTap: () => ref.refresh(fetchCarouselProvider));
 
             return SizedBox(
               height: 250,

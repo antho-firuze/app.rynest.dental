@@ -1,10 +1,11 @@
-import 'package:dental/common/exceptions/data_failed.dart';
+import 'package:dental/common/exceptions/data_exeception_layout.dart';
 import 'package:dental/common/widgets/custom_input.dart';
 import 'package:dental/common/widgets/skelton.dart';
 import 'package:dental/core/app_color.dart';
 import 'package:dental/features/product/controller/doctor_ctrl.dart';
-import 'package:dental/features/product/views/treatment/visit_schedule_view.dart';
+import 'package:dental/features/product/controller/treatment_ctrl.dart';
 import 'package:dental/features/product/views/widgets/select_doctor_layout.dart';
+import 'package:dental/features/product/views/treatment/ticket_view.dart';
 import 'package:dental/utils/my_ui.dart';
 import 'package:dental/utils/page_utils.dart';
 import 'package:dental/utils/ui_helper.dart';
@@ -51,7 +52,7 @@ class DoctorSelectionView extends ConsumerWidget {
                           skipLoadingOnRefresh: false,
                           data: (data) {
                             if (data == null || data.isEmpty) {
-                              return DataFailed();
+                              return DataExceptionLayout(type: ExeceptionType.dataEmpty);
                             }
 
                             final items = data;
@@ -65,7 +66,10 @@ class DoctorSelectionView extends ConsumerWidget {
                                   padding: const EdgeInsets.symmetric(horizontal: 12),
                                   child: SelectDoctorLayout(
                                     item: item,
-                                    onSelected: () => context.goto(page: VisitScheduleView(item)),
+                                    onSelected: () {
+                                      ref.read(doctorNameProvider.notifier).state = item.name!;
+                                      return context.goto(page: TicketView());
+                                    },
                                   ),
                                 );
                               },

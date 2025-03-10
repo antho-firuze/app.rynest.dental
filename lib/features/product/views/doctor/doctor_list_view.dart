@@ -1,4 +1,4 @@
-import 'package:dental/common/exceptions/data_failed.dart';
+import 'package:dental/common/exceptions/data_exeception_layout.dart';
 import 'package:dental/common/widgets/custom_input.dart';
 import 'package:dental/common/widgets/skelton.dart';
 import 'package:dental/core/app_color.dart';
@@ -50,7 +50,7 @@ class DoctorListView extends ConsumerWidget {
                       skipLoadingOnRefresh: false,
                       data: (data) {
                         if (data == null || data.isEmpty) {
-                          return DataFailed();
+                          return DataExceptionLayout(type: ExeceptionType.dataEmpty);
                         }
 
                         final items = data;

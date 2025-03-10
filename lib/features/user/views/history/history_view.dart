@@ -1,10 +1,11 @@
-import 'package:dental/common/exceptions/data_failed.dart';
+import 'package:dental/common/exceptions/data_exeception_layout.dart';
 import 'package:dental/common/widgets/forms/group_list.dart';
 import 'package:dental/common/widgets/skelton.dart';
 import 'package:dental/features/user/controller/medical_record_ctrl.dart';
 import 'package:dental/features/user/controller/profile_ctrl.dart';
 import 'package:dental/features/user/views/medical_record/medical_detail_view.dart';
-import 'package:dental/features/user/views/ticket_layout.dart';
+import 'package:dental/features/user/views/ticket/ticket_layout.dart';
+import 'package:dental/features/user/views/ticket/ticket_view.dart';
 import 'package:dental/features/user/views/widgets/medical_list_layout.dart';
 import 'package:dental/utils/my_ui.dart';
 import 'package:dental/utils/page_utils.dart';
@@ -50,7 +51,9 @@ class HistoryView extends ConsumerWidget {
                     showDividerCenter: true,
                     title: Text('Antrian kedatangan saat ini '),
                     children: [
-                      TicketLayout(),
+                      TicketLayout(
+                        onTap: () => context.goto(page: TicketView()),
+                      ),
                       10.height,
                     ],
                   ),
@@ -67,7 +70,7 @@ class HistoryView extends ConsumerWidget {
                             skipLoadingOnRefresh: false,
                             data: (data) {
                               if (data == null || data.isEmpty) {
-                                return DataFailed();
+                                return DataExceptionLayout(type: ExeceptionType.dataEmpty);
                               }
 
                               return ListView.separated(

@@ -1,4 +1,4 @@
-import 'package:dental/common/exceptions/data_failed.dart';
+import 'package:dental/common/exceptions/data_exeception_layout.dart';
 import 'package:dental/localization/string_hardcoded.dart';
 import 'package:dental/utils/ui_helper.dart';
 import 'package:flutter/material.dart';
@@ -19,8 +19,9 @@ class EmptyNotification extends ConsumerWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               // Image
-              DataFailed(
-                message: 'Tidak ada notifikasi saat ini !'.hardcoded,
+              DataExceptionLayout(
+                type: ExeceptionType.dataEmpty,
+                title: 'Tidak ada notifikasi saat ini !'.hardcoded,
               ),
             ],
           ),

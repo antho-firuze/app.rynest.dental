@@ -1,4 +1,4 @@
-import 'package:dental/common/exceptions/data_failed.dart';
+import 'package:dental/common/exceptions/data_exeception_layout.dart';
 import 'package:dental/common/widgets/custom_rich_text.dart';
 import 'package:dental/common/widgets/skelton.dart';
 import 'package:dental/features/user/controller/medical_record_ctrl.dart';
@@ -14,18 +14,21 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class MedicalRecordsView extends ConsumerWidget {
   const MedicalRecordsView({super.key});
 
+  static const routeName = '/medical';
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return MyUI(
       child: ClipRRect(
         borderRadius: const BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
         child: Scaffold(
-          appBar: AppBar(title: Text('Medical Records'), centerTitle: true),
+          // appBar: AppBar(title: Text('Medical Records'), centerTitle: true),
           body: RefreshIndicator(
             onRefresh: () async => ref.refresh(fetchMedicalRecordsProvider),
             child: ListView(
               // shrinkWrap: true,
               children: [
+                20.height,
                 // TITLE
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -59,7 +62,7 @@ class MedicalRecordsView extends ConsumerWidget {
                       skipLoadingOnRefresh: false,
                       data: (data) {
                         if (data == null || data.isEmpty) {
-                          return DataFailed();
+                          return DataExceptionLayout(type: ExeceptionType.dataEmpty);
                         }
 
                         return ListView.separated(

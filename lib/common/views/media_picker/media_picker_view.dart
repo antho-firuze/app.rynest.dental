@@ -1,7 +1,7 @@
 import 'package:dental/common/controllers/camera_ctrl.dart';
 import 'package:dental/common/controllers/media_picker_ctrl.dart';
 import 'package:dental/common/controllers/permission_ctrl.dart';
-import 'package:dental/common/exceptions/warning_exeption.dart';
+import 'package:dental/common/exceptions/warning_layout.dart';
 import 'package:dental/common/views/media_picker/widget/camera_picker.dart';
 import 'package:dental/common/views/media_picker/widget/gallery_picker.dart';
 import 'package:dental/core/app_color.dart';
@@ -54,7 +54,7 @@ class _PickImageViewState extends ConsumerState<MediaPickerView> with SingleTick
           appBar: AppBar(title: Text('Pilih Gambar'.hardcoded)),
           body: ListView(
             children: [
-              WarningException(
+              WarningLayout(
                 title: 'Izinkan akses Galery & Camera !',
                 child: ElevatedButton(
                   onPressed: () async => await ref.read(cameraCtrlProvider).getPermission(),

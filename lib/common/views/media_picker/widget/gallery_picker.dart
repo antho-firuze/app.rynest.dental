@@ -1,5 +1,5 @@
 import 'package:dental/common/controllers/media_picker_ctrl.dart';
-import 'package:dental/common/exceptions/warning_exeption.dart';
+import 'package:dental/common/exceptions/warning_layout.dart';
 import 'package:dental/common/views/media_picker/widget/album_list.dart';
 import 'package:dental/common/views/media_picker/widget/asset_card.dart';
 import 'package:dental/common/widgets/button/custom_button.dart';
@@ -21,7 +21,7 @@ class GalleryPicker extends ConsumerWidget {
     final assetList = ref.watch(assetListProvider);
 
     if (ref.watch(albumListProvider).isEmpty) {
-      return WarningException(
+      return WarningLayout(
         title: 'Tidak ada gambar di galeri !',
         child: ElevatedButton(
           onPressed: () async => await ref.read(mediaPickerCtrlProvider).refresh(),

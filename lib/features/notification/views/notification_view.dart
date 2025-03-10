@@ -1,5 +1,5 @@
 import 'package:dental/common/controllers/permission_ctrl.dart';
-import 'package:dental/common/exceptions/warning_exeption.dart';
+import 'package:dental/common/exceptions/warning_layout.dart';
 import 'package:dental/common/widgets/button/settings_button.dart';
 import 'package:dental/core/app_color.dart';
 import 'package:dental/features/notification/views/notification_setting_view.dart';
@@ -30,7 +30,7 @@ class NotificationView extends ConsumerWidget {
           ),
           body: ListView(
             children: [
-              WarningException(
+              WarningLayout(
                 title: 'Saat ini notifikasi belum aktif !',
                 child: ElevatedButton(
                   onPressed: () => context.goto(page: const NotificationSettingView()),

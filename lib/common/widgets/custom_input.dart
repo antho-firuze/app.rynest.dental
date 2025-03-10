@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:dental/utils/ui_helper.dart';
 
+enum InputType { date, time, dateTime }
+
 class CustomInput extends StatefulWidget {
   const CustomInput({
     super.key,
@@ -104,21 +106,24 @@ class _CustomInputState extends State<CustomInput> with SingleTickerProviderStat
 
   @override
   Widget build(BuildContext context) {
-    var showClearBtn = (!isEmpty && !widget.readOnly && widget.enabled)
-        ? InkWell(
-            onTap: () => controller.text = '',
-            child: Icon(Icons.clear),
-          )
-        : null;
+    var showClearBtn = InkWell(
+      onTap: () {
+        controller.text = '';
+        if (widget.onChanged != null) {
+          widget.onChanged!(null);
+        }
+      },
+      child: (!isEmpty && !widget.readOnly && widget.enabled) ? Icon(Icons.clear) : Container(),
+    );
 
-    var showPasswordVisibility = widget.isPassword == true
-        ? InkWell(
-            onTap: () => setState(() {
-              showPassword = !showPassword;
-            }),
-            child: Icon(showPassword ? Icons.visibility : Icons.visibility_off),
-          )
-        : null;
+    var showPasswordVisibility = InkWell(
+      onTap: () => setState(() {
+        showPassword = !showPassword;
+      }),
+      child: widget.isPassword == true
+          ? SizedBox(width: 45, child: Icon(showPassword ? Icons.visibility : Icons.visibility_off))
+          : Container(),
+    );
 
     return TextFormField(
       controller: controller,
@@ -161,8 +166,8 @@ class _CustomInputState extends State<CustomInput> with SingleTickerProviderStat
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              if (showClearBtn != null) showClearBtn,
-              if (showPasswordVisibility != null) showPasswordVisibility,
+              showClearBtn,
+              showPasswordVisibility,
               if (widget.suffixIcon != null) widget.suffixIcon!,
             ],
           ),

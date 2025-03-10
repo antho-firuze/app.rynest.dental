@@ -44,8 +44,18 @@ class AppTheme {
         ),
         // elevation: 0,
       ),
+      cardTheme: CardThemeData(
+        color: secondaryLight,
+        elevation: 3,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+      ),
       // iconTheme: IconThemeData(color: colorScheme.colorIcon),
       navigationBarTheme: NavigationBarThemeData(
+        backgroundColor: colorScheme.navigationBarBackground,
+        // shadowColor: colorScheme.navigationBarShadow,
+        elevation: 3,
         labelTextStyle: WidgetStateProperty.resolveWith(
           (states) => states.contains(WidgetState.selected)
               ? TextStyle(color: colorScheme.navigationBarSelected)
@@ -58,10 +68,12 @@ class AppTheme {
         ),
       ),
       navigationRailTheme: NavigationRailThemeData(
+        backgroundColor: colorScheme.navigationBarBackground,
+        elevation: 3,
         selectedIconTheme: IconThemeData(color: colorScheme.navigationRailSelected),
         selectedLabelTextStyle: TextStyle(color: colorScheme.navigationRailSelected),
-        unselectedIconTheme: IconThemeData(color: colorScheme.navigationRailSelected),
-        unselectedLabelTextStyle: TextStyle(color: colorScheme.navigationRailSelected),
+        unselectedIconTheme: IconThemeData(color: colorScheme.navigationRailUnSelected),
+        unselectedLabelTextStyle: TextStyle(color: colorScheme.navigationRailUnSelected),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(

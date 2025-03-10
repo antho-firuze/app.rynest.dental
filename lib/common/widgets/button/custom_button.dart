@@ -11,6 +11,7 @@ class CustomButton extends StatelessWidget {
     this.tooltip,
     this.child,
     this.flat = false,
+    this.shape,
     this.onPressed,
   });
 
@@ -21,6 +22,7 @@ class CustomButton extends StatelessWidget {
   final String? tooltip;
   final Widget? child;
   final bool flat;
+  final OutlinedBorder? shape;
   final void Function()? onPressed;
 
   @override
@@ -30,15 +32,13 @@ class CustomButton extends StatelessWidget {
       backgroundColor: color,
       iconColor: oWhite,
       iconSize: 15,
+      shape: shape ?? RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
     );
     final buttonStyleFlat = ElevatedButton.styleFrom(
       foregroundColor: primaryLight,
       backgroundColor: Colors.transparent,
       elevation: 0,
-      shape: RoundedRectangleBorder(
-        side: BorderSide(color: oGrey),
-        borderRadius: BorderRadius.circular(10),
-      ),
+      shape: shape ?? RoundedRectangleBorder(side: BorderSide(color: oGrey), borderRadius: BorderRadius.circular(10)),
       iconColor: primaryLight,
       iconSize: 15,
     );
